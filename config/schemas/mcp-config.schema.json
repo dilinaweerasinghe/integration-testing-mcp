@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ifs.com/schemas/mcp-config.schema.json",
+  "title": "MCP Server Configuration",
+  "description": "Configuration schema for SAR/TAR MCP servers",
+  "type": "object",
+  "required": ["version", "servers"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Configuration version"
+    },
+    "servers": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/ServerConfig"
+      }
+    },
+    "globalSettings": {
+      "$ref": "#/definitions/GlobalSettings"
+    }
+  },
+  "definitions": {
+    "ServerConfig": {
+      "type": "object",
+      "required": ["name", "command", "transport"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Human-readable server name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Server description"
+        },
+        "command": {
+          "type": "string",
+          "description": "Command to start the server"
+        },
+        "args": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Command arguments"
+        },
+        "transport": {
+          "type": "string",
+          "enum": ["stdio", "http"],
+          "description": "Transport protocol"
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether server is enabled"
+        },
+        "env": {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Environment variables"
+        },
+        "httpConfig": {
+          "$ref": "#/definitions/HttpConfig"
+        }
+      }
+    },
+    "HttpConfig": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string",
+          "default": "localhost"
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "basePath": {
+          "type": "string",
+          "default": "/"
+        },
+        "tls": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "GlobalSettings": {
+      "type": "object",
+      "properties": {
+        "defaultTimeout": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 300000,
+          "default": 30000
+        },
+        "maxConcurrentSessions": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 5
+        },
+        "logDirectory": {
+          "type": "string"
+        },
+        "auditLogEnabled": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  }
+}

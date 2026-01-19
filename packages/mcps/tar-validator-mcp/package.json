@@ -1,0 +1,73 @@
+{
+  "name": "@dilina0914/sar-test-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for running and validating SAR/TAR test files",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "sar-test-mcp": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ifs",
+    "sar",
+    "tar",
+    "test-automation",
+    "integration-testing",
+    "script-a-rest"
+  ],
+  "author": "IFS",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dilina0914/sar-mcp.git",
+    "directory": "packages/mcps/tar-validator-mcp"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "tsup",
+    "build:dev": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "test": "vitest",
+    "test:unit": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "remark-frontmatter": "^5.0.0",
+    "remark-parse": "^11.0.0",
+    "unified": "^11.0.5",
+    "yaml": "^2.4.5",
+    "zod": "^3.23.8",
+    "pino": "^8.21.0"
+  },
+  "devDependencies": {
+    "@ifs/logging": "workspace:*",
+    "@ifs/mcp-core": "workspace:*",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^20.14.0",
+    "rimraf": "^5.0.7",
+    "tsup": "^8.5.1",
+    "tsx": "^4.15.4",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "peerDependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}

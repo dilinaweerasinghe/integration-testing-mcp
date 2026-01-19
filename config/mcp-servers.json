@@ -1,0 +1,54 @@
+{
+  "$schema": "./schemas/mcp-config.schema.json",
+  "version": "1.0.0",
+  "servers": {
+    "http-capture-mcp": {
+      "name": "HTTP Capture MCP",
+      "description": "Captures HTTP traffic from IFS Cloud using headless browser automation",
+      "command": "node",
+      "args": ["./packages/mcps/http-capture-mcp/dist/index.js"],
+      "transport": "stdio",
+      "enabled": true,
+      "env": {
+        "LOG_LEVEL": "info",
+        "BROWSER_HEADLESS": "true",
+        "MAX_CAPTURE_SIZE_MB": "10"
+      }
+    },
+    "openapi-mcp": {
+      "name": "OpenAPI Metadata MCP",
+      "description": "Parses OpenAPI specifications and extracts IFS Cloud service metadata",
+      "command": "node",
+      "args": ["./packages/mcps/openapi-mcp/dist/index.js"],
+      "transport": "stdio",
+      "enabled": true,
+      "env": {
+        "LOG_LEVEL": "info",
+        "SPEC_CACHE_TTL_SECONDS": "3600"
+      }
+    },
+    "sar-test-mcp": {
+      "name": "SAR Test MCP",
+      "description": "Validates and runs SAR/TAR test files using ScriptARest",
+      "command": "node",
+      "args": ["./packages/mcps/tar-validator-mcp/dist/index.js"],
+      "transport": "stdio",
+      "enabled": true,
+      "env": {
+        "LOG_LEVEL": "info",
+        "VALIDATION_STRICT_MODE": "true",
+        "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
+        "SAR_SERVER_URL": "https://your-ifs-server.com",
+        "SAR_USERNAME": "ifsapp",
+        "SAR_PASSWORD": "",
+        "SAR_TIMEOUT_MS": "600000"
+      }
+    }
+  },
+  "globalSettings": {
+    "defaultTimeout": 30000,
+    "maxConcurrentSessions": 5,
+    "logDirectory": "./logs",
+    "auditLogEnabled": true
+  }
+}

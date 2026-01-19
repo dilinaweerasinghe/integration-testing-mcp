@@ -1,0 +1,66 @@
+{
+  "name": "@ifs/sar-tar-mcp-tooling",
+  "version": "1.0.0",
+  "description": "MCP-based tooling system for SAR/TAR test automation in IFS Cloud integration testing",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@9.1.0",
+  "workspaces": [
+    "packages/*",
+    "packages/mcps/*",
+    "packages/shared/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:mcps": "pnpm --filter './packages/mcps/*' build",
+    "build:shared": "pnpm --filter './packages/shared/*' build",
+    "dev": "pnpm -r --parallel dev",
+    "test": "pnpm -r test",
+    "test:unit": "pnpm -r test:unit",
+    "test:integration": "pnpm -r test:integration",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,json,md}\"",
+    "typecheck": "pnpm -r typecheck",
+    "clean": "pnpm -r clean && rimraf node_modules",
+    "prepare": "husky install",
+    "mcp:http-capture": "pnpm --filter @ifs/http-capture-mcp start",
+    "mcp:openapi": "pnpm --filter @ifs/openapi-mcp start",
+    "mcp:tar-validator": "pnpm --filter @ifs/tar-validator-mcp start",
+    "mcp:all": "pnpm -r --filter './packages/mcps/*' start"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.5",
+    "prettier": "^3.3.2",
+    "rimraf": "^5.0.7",
+    "tsx": "^4.15.4",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript": "^5.4.5"
+    }
+  }
+}

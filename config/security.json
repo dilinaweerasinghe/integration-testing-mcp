@@ -1,0 +1,87 @@
+{
+  "$schema": "./schemas/security-config.schema.json",
+  "version": "1.0.0",
+  "domainAllowlist": {
+    "enabled": true,
+    "domains": [
+      "*.ifscloud.com",
+      "*.ifs.com",
+      "*.ifsapplications.com",
+      "localhost",
+      "127.0.0.1"
+    ],
+    "strictMode": true,
+    "blockOnMismatch": true
+  },
+  "headerRedaction": {
+    "enabled": true,
+    "sensitiveHeaders": [
+      "Authorization",
+      "Cookie",
+      "Set-Cookie",
+      "X-API-Key",
+      "X-Auth-Token",
+      "X-IFS-Session",
+      "X-IFS-Token",
+      "Proxy-Authorization",
+      "WWW-Authenticate",
+      "X-CSRF-Token",
+      "X-Request-Id"
+    ],
+    "redactionPlaceholder": "[REDACTED]",
+    "preserveHeaderNames": true
+  },
+  "bodyRedaction": {
+    "enabled": true,
+    "sensitivePatterns": [
+      {
+        "name": "password",
+        "pattern": "(?i)(password|passwd|pwd)\\s*[\"':=]\\s*[\"']?[^\"'\\s,}]+",
+        "replacement": "$1: \"[REDACTED]\""
+      },
+      {
+        "name": "apiKey",
+        "pattern": "(?i)(api[_-]?key|apikey)\\s*[\"':=]\\s*[\"']?[^\"'\\s,}]+",
+        "replacement": "$1: \"[REDACTED]\""
+      },
+      {
+        "name": "token",
+        "pattern": "(?i)(token|bearer)\\s*[\"':=]\\s*[\"']?[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*",
+        "replacement": "$1: \"[REDACTED]\""
+      },
+      {
+        "name": "secret",
+        "pattern": "(?i)(secret|client_secret)\\s*[\"':=]\\s*[\"']?[^\"'\\s,}]+",
+        "replacement": "$1: \"[REDACTED]\""
+      }
+    ]
+  },
+  "requestLimits": {
+    "maxBodySizeBytes": 10485760,
+    "maxUrlLength": 8192,
+    "maxHeadersCount": 100,
+    "maxHeaderValueLength": 8192,
+    "allowedContentTypes": [
+      "application/json",
+      "application/xml",
+      "text/xml",
+      "application/x-www-form-urlencoded",
+      "text/plain",
+      "text/html"
+    ],
+    "blockBinaryContent": true
+  },
+  "sessionIsolation": {
+    "enabled": true,
+    "cleanupOnClose": true,
+    "noPersistentStorage": true,
+    "incognitoMode": true
+  },
+  "auditLogging": {
+    "enabled": true,
+    "logToolInvocations": true,
+    "logUrlsAccessed": true,
+    "excludeSensitiveData": true,
+    "retentionDays": 30
+  }
+}

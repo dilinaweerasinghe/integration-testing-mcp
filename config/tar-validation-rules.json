@@ -1,0 +1,119 @@
+{
+  "$schema": "./schemas/tar-validation.schema.json",
+  "version": "1.0.0",
+  "rules": {
+    "metadata": {
+      "enabled": true,
+      "severity": "error",
+      "requiredFields": [
+        "title",
+        "description",
+        "author",
+        "created",
+        "tags"
+      ],
+      "optionalFields": [
+        "modified",
+        "version",
+        "priority",
+        "timeout",
+        "dependencies"
+      ],
+      "dateFormat": "YYYY-MM-DD",
+      "authorFormat": "^[A-Z][a-z]+\\s[A-Z][a-z]+$"
+    },
+    "aaaStructure": {
+      "enabled": true,
+      "severity": "error",
+      "requiredSections": ["Arrange", "Act", "Assert"],
+      "sectionOrder": ["Arrange", "Act", "Assert"],
+      "allowEmptyArrange": true,
+      "allowEmptyAssert": false,
+      "multipleSectionsAllowed": false
+    },
+    "variableNaming": {
+      "enabled": true,
+      "severity": "error",
+      "enforceCase": "camelCase",
+      "patterns": {
+        "valid": "^[a-z][a-zA-Z0-9]*$",
+        "invalid": ["^[A-Z]", "_", "-"]
+      },
+      "reservedWords": [
+        "test",
+        "result",
+        "response",
+        "request",
+        "error",
+        "data"
+      ],
+      "maxLength": 50,
+      "minLength": 2
+    },
+    "substitutionPatterns": {
+      "enabled": true,
+      "severity": "error",
+      "patterns": {
+        "testUtilReference": {
+          "syntax": "{#UtilName}",
+          "regex": "\\{#[A-Z][a-zA-Z0-9]+\\}",
+          "description": "Reference to Test Utils"
+        },
+        "dataSubstitution": {
+          "syntax": "{%variableName}",
+          "regex": "\\{%[a-z][a-zA-Z0-9]*\\}",
+          "description": "Data substitution placeholder"
+        },
+        "environmentVariable": {
+          "syntax": "{$ENV_VAR}",
+          "regex": "\\{\\$[A-Z][A-Z0-9_]*\\}",
+          "description": "Environment variable reference"
+        }
+      },
+      "requireDefinition": true,
+      "warnOnUnusedDefinitions": true
+    },
+    "httpOperations": {
+      "enabled": true,
+      "severity": "warning",
+      "allowedMethods": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"],
+      "requireContentType": true,
+      "defaultContentType": "application/json",
+      "validateJsonPayloads": true
+    },
+    "assertions": {
+      "enabled": true,
+      "severity": "error",
+      "minAssertionsPerTest": 1,
+      "maxAssertionsPerTest": 20,
+      "allowedAssertionTypes": [
+        "statusCode",
+        "responseBody",
+        "responseHeader",
+        "responseTime",
+        "jsonPath",
+        "contains",
+        "matches",
+        "equals",
+        "notEquals",
+        "exists",
+        "notExists"
+      ]
+    },
+    "fileStructure": {
+      "enabled": true,
+      "severity": "warning",
+      "fileExtension": ".mkd",
+      "encoding": "utf-8",
+      "maxFileSizeKb": 500,
+      "maxTestsPerFile": 50,
+      "requireFrontmatter": true
+    }
+  },
+  "customRules": [],
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/dist/**"
+  ]
+}
