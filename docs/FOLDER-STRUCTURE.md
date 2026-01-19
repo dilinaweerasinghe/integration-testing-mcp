@@ -46,7 +46,7 @@ Each MCP server is a standalone package that can be run independently.
 
 #### `http-capture-mcp`
 
-**Purpose**: Captures HTTP traffic from IFS Cloud using headless Playwright browser.
+**Purpose**: Captures HTTP traffic from Cloud ERP using headless Playwright browser.
 
 **Structure**:
 ```
@@ -85,7 +85,7 @@ http-capture-mcp/
 
 #### `openapi-mcp`
 
-**Purpose**: Parses OpenAPI specifications and extracts service metadata for IFS Cloud.
+**Purpose**: Parses OpenAPI specifications and extracts service metadata for Cloud ERP.
 
 **Structure**:
 ```
@@ -107,7 +107,7 @@ openapi-mcp/
 **Responsibilities**:
 - Parse OpenAPI 3.x specifications (JSON/YAML)
 - Extract endpoint information
-- Map entity schemas with IFS-specific annotations
+- Map entity schemas with ERP-specific annotations
 - Identify key fields and data types
 - Search and filter operations
 
@@ -249,7 +249,7 @@ pnpm install
 pnpm build
 
 # Build specific package
-pnpm --filter @ifs/http-capture-mcp build
+pnpm --filter @dilina0914/http-capture-mcp build
 ```
 
 ### Running MCP Servers
@@ -271,7 +271,7 @@ pnpm mcp:all
 pnpm test
 
 # Run tests for specific package
-pnpm --filter @ifs/tar-validator-mcp test
+pnpm --filter @dilina0914/sar-test-mcp test
 ```
 
 ---
@@ -279,19 +279,19 @@ pnpm --filter @ifs/tar-validator-mcp test
 ## Package Dependencies
 
 ```
-@ifs/http-capture-mcp
-├── @ifs/mcp-core
-├── @ifs/security
-└── @ifs/logging
+@dilina0914/http-capture-mcp
+├── @internal/mcp-core
+├── @internal/security
+└── @internal/logging
 
-@ifs/openapi-mcp
-├── @ifs/mcp-core
-├── @ifs/security
-└── @ifs/logging
+@dilina0914/openapi-mcp
+├── @internal/mcp-core
+├── @internal/security
+└── @internal/logging
 
-@ifs/tar-validator-mcp
-├── @ifs/mcp-core
-└── @ifs/logging
+@dilina0914/sar-test-mcp
+├── @internal/mcp-core
+└── @internal/logging
 ```
 
 ---
@@ -300,7 +300,7 @@ pnpm --filter @ifs/tar-validator-mcp test
 
 1. Create directory under `/packages/mcps/`
 2. Initialize with `package.json` and `tsconfig.json`
-3. Extend `BaseMcpServer` from `@ifs/mcp-core`
+3. Extend `BaseMcpServer` from the internal mcp-core package
 4. Implement `registerTools()` method
 5. Add to `/config/mcp-servers.json`
 6. Document in `/docs/mcp-servers/`

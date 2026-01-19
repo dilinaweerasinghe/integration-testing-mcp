@@ -54,24 +54,13 @@ pnpm test
 
 ### Important: Handling Workspace Dependencies
 
-The MCPs currently use `workspace:*` dependencies for shared packages (`@ifs/logging`, `@ifs/mcp-core`, `@ifs/security`). Before publishing, you have two options:
+The MCPs currently use `workspace:*` dependencies for shared internal packages. Before publishing, you have two options:
 
 #### Option A: Publish Shared Packages First (Recommended)
 
-1. Publish shared packages to npm first:
-   ```bash
-   pnpm --filter @ifs/logging publish --access restricted
-   pnpm --filter @ifs/mcp-core publish --access restricted
-   pnpm --filter @ifs/security publish --access restricted
-   ```
+1. Publish shared packages to npm first (internal packages)
 
-2. Update MCP packages to use published versions:
-   ```json
-   "dependencies": {
-     "@ifs/logging": "^1.0.0",
-     "@ifs/mcp-core": "^1.0.0"
-   }
-   ```
+2. Update MCP packages to use published versions
 
 #### Option B: Bundle Dependencies
 
@@ -93,7 +82,7 @@ pnpm automatically converts `workspace:*` to actual versions when publishing:
 
 ```bash
 # This will convert workspace:* to ^1.0.0 (current version) automatically
-pnpm --filter @ifs/sar-test-mcp publish
+pnpm --filter @dilina0914/sar-test-mcp publish
 ```
 
 ### 1. Update package.json Files
@@ -102,7 +91,7 @@ pnpm --filter @ifs/sar-test-mcp publish
 
 ```json
 {
-  "name": "@ifs/sar-test-mcp",
+  "name": "@dilina0914/sar-test-mcp",
   "version": "1.0.0",
   "description": "MCP server for running and validating SAR/TAR test files",
   "type": "module",
@@ -125,16 +114,16 @@ pnpm --filter @ifs/sar-test-mcp publish
     "test-automation",
     "integration-testing"
   ],
-  "author": "IFS",
-  "license": "UNLICENSED",
+  "author": "Dilina Weerasinghe",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/IFS/sar-mcp.git",
+    "url": "https://github.com/dilinaweerasinghe/integration-testing-mcp.git",
     "directory": "packages/mcps/tar-validator-mcp"
   },
-  "homepage": "https://github.com/IFS/sar-mcp#readme",
+  "homepage": "https://github.com/dilinaweerasinghe/integration-testing-mcp#readme",
   "bugs": {
-    "url": "https://github.com/IFS/sar-mcp/issues"
+    "url": "https://github.com/dilinaweerasinghe/integration-testing-mcp/issues"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -150,7 +139,7 @@ pnpm --filter @ifs/sar-test-mcp publish
 
 ```json
 {
-  "name": "@ifs/http-capture-mcp",
+  "name": "@dilina0914/http-capture-mcp",
   "version": "1.0.0",
   "description": "MCP server for capturing HTTP traffic using Playwright",
   "type": "module",
@@ -172,11 +161,11 @@ pnpm --filter @ifs/sar-test-mcp publish
     "browser-automation",
     "api-testing"
   ],
-  "author": "IFS",
-  "license": "UNLICENSED",
+  "author": "Dilina Weerasinghe",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/IFS/sar-mcp.git",
+    "url": "https://github.com/dilinaweerasinghe/integration-testing-mcp.git",
     "directory": "packages/mcps/http-capture-mcp"
   },
   "engines": {
@@ -194,14 +183,14 @@ pnpm --filter @ifs/sar-test-mcp publish
 Create `packages/mcps/tar-validator-mcp/README.md`:
 
 ```markdown
-# @ifs/sar-test-mcp
+# @dilina0914/sar-test-mcp
 
 MCP (Model Context Protocol) server for running and validating SAR/TAR test files.
 
 ## Installation
 
 \`\`\`bash
-npm install @ifs/sar-test-mcp
+npm install @dilina0914/sar-test-mcp
 \`\`\`
 
 ## Usage
@@ -215,7 +204,7 @@ Add to your MCP client configuration:
   "mcpServers": {
     "sar-test": {
       "command": "npx",
-      "args": ["@ifs/sar-test-mcp"],
+      "args": ["@dilina0914/sar-test-mcp"],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
         "SAR_SERVER_URL": "https://your-ifs-server.com",
@@ -244,20 +233,20 @@ Add to your MCP client configuration:
 
 ## License
 
-Proprietary - IFS
+MIT
 \`\`\`
 
 Create `packages/mcps/http-capture-mcp/README.md`:
 
 \`\`\`markdown
-# @ifs/http-capture-mcp
+# @dilina0914/http-capture-mcp
 
 MCP (Model Context Protocol) server for capturing HTTP traffic using Playwright.
 
 ## Installation
 
 \`\`\`bash
-npm install @ifs/http-capture-mcp
+npm install @dilina0914/http-capture-mcp
 \`\`\`
 
 ## Usage
@@ -271,7 +260,7 @@ Add to your MCP client configuration:
   "mcpServers": {
     "http-capture": {
       "command": "npx",
-      "args": ["@ifs/http-capture-mcp"],
+      "args": ["@dilina0914/http-capture-mcp"],
       "env": {
         "BROWSER_HEADLESS": "true",
         "LOG_LEVEL": "info"
@@ -296,19 +285,12 @@ Add to your MCP client configuration:
 
 ## License
 
-Proprietary - IFS
+MIT
 ```
 
 ### 3. Create LICENSE File
 
-Create `LICENSE` in the root and each package:
-
-```
-Copyright (c) 2026 IFS AB. All Rights Reserved.
-
-This software is proprietary and confidential.
-Unauthorized copying, modification, distribution, or use is strictly prohibited.
-```
+Create `LICENSE` in the root and each package with appropriate license content.
 
 ---
 
@@ -342,8 +324,8 @@ npm publish --access restricted
 pnpm -r publish --access restricted
 
 # Or publish specific packages
-pnpm --filter @ifs/sar-test-mcp publish --access restricted
-pnpm --filter @ifs/http-capture-mcp publish --access restricted
+pnpm --filter @dilina0914/sar-test-mcp publish --access public
+pnpm --filter @dilina0914/http-capture-mcp publish --access public
 ```
 
 ### Method 3: Dry Run (Test First)
@@ -375,7 +357,7 @@ npm publish --access restricted
 1. Create `.npmrc` in project root:
 
 ```ini
-@ifs:registry=https://npm.pkg.github.com
+@dilina0914:registry=https://npm.pkg.github.com
 //npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
 ```
 
@@ -404,7 +386,7 @@ npm publish
 1. Create `.npmrc`:
 
 ```ini
-@ifs:registry=https://pkgs.dev.azure.com/YOUR_ORG/_packaging/YOUR_FEED/npm/registry/
+@dilina0914:registry=https://pkgs.dev.azure.com/YOUR_ORG/_packaging/YOUR_FEED/npm/registry/
 always-auth=true
 ```
 
@@ -428,7 +410,7 @@ verdaccio
 2. Configure `.npmrc`:
 
 ```ini
-@ifs:registry=http://localhost:4873/
+@dilina0914:registry=http://localhost:4873/
 ```
 
 3. Publish:
@@ -522,12 +504,12 @@ jobs:
         run: pnpm test
       
       - name: Publish SAR Test MCP
-        run: pnpm --filter @ifs/sar-test-mcp publish --access restricted --no-git-checks
+        run: pnpm --filter @dilina0914/sar-test-mcp publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
       - name: Publish HTTP Capture MCP
-        run: pnpm --filter @ifs/http-capture-mcp publish --access restricted --no-git-checks
+        run: pnpm --filter @dilina0914/http-capture-mcp publish --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
@@ -563,12 +545,12 @@ After publishing:
 
 ```bash
 # Verify packages are available
-npm view @ifs/sar-test-mcp
-npm view @ifs/http-capture-mcp
+npm view @dilina0914/sar-test-mcp
+npm view @dilina0914/http-capture-mcp
 
 # Test installation
-npm install @ifs/sar-test-mcp@latest
-npm install @ifs/http-capture-mcp@latest
+npm install @dilina0914/sar-test-mcp@latest
+npm install @dilina0914/http-capture-mcp@latest
 ```
 
 ---
@@ -599,4 +581,4 @@ npm login
 
 ### Support
 
-Contact the IFS QA Automation team for publishing assistance.
+Open an issue on the GitHub repository for publishing assistance.

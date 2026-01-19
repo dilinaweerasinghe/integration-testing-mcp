@@ -22,7 +22,7 @@ A Model Context Protocol (MCP) server for capturing HTTP traffic using headless 
 
 ## Package Information
 
-This package is **fully bundled** - all internal dependencies are included. No need to install additional `@ifs/*` packages.
+This package is **fully bundled** - all internal dependencies are included.
 
 | Property | Value |
 |----------|-------|
@@ -485,7 +485,7 @@ For each intercepted HTTP request, the following data is captured:
 
 ## Use Cases
 
-1. **API Discovery**: Navigate to IFS Cloud pages and capture API calls
+1. **API Discovery**: Navigate to Cloud ERP pages and capture API calls
 2. **Test Recording**: Record user interactions and capture API traffic for test generation
 3. **Form Testing**: Automate form filling and capture form submissions
 4. **Integration Testing**: Verify API payloads and responses
@@ -493,7 +493,7 @@ For each intercepted HTTP request, the following data is captured:
 
 ## License
 
-Proprietary - IFS
+MIT
 
 ## Links
 
@@ -503,4 +503,4 @@ Proprietary - IFS
 
 ## Support
 
-Contact the IFS QA Automation team for support.
+Open an issue on the GitHub repository for support.

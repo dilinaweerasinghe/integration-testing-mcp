@@ -2,10 +2,10 @@
 
 ## Executive Summary
 
-This document describes the architecture for an MCP (Model Context Protocol) based tooling system that supports SAR/TAR (Service Automation REST / Test Automation REST) test automation for IFS Cloud integration testing.
+This document describes the architecture for an MCP (Model Context Protocol) based tooling system that supports SAR/TAR (Service Automation REST / Test Automation REST) test automation for Cloud ERP integration testing.
 
 The system provides three specialized MCP servers that an AI agent can invoke to:
-- Capture HTTP traffic from IFS Cloud services
+- Capture HTTP traffic from Cloud ERP services
 - Discover API metadata from OpenAPI specifications
 - Validate generated TAR test files against standards
 
@@ -59,7 +59,7 @@ The system provides three specialized MCP servers that an AI agent can invoke to
 
 ### 1. HTTP Capture MCP Server
 
-**Purpose**: Safely capture HTTP traffic from IFS Cloud web interfaces using headless browser automation.
+**Purpose**: Safely capture HTTP traffic from Cloud ERP web interfaces using headless browser automation.
 
 **Capabilities**:
 | Tool Name | Description |
@@ -70,7 +70,7 @@ The system provides three specialized MCP servers that an AI agent can invoke to
 | `closeBrowser` | Terminates browser session and clears captured data |
 
 **Security Controls**:
-- Domain allowlist enforcement (only approved IFS Cloud domains)
+- Domain allowlist enforcement (only approved Cloud ERP domains)
 - Automatic redaction of `Authorization`, `Cookie`, `Set-Cookie` headers
 - Request/response body size limits
 - Session isolation per capture
@@ -78,7 +78,7 @@ The system provides three specialized MCP servers that an AI agent can invoke to
 
 ### 2. OpenAPI / Metadata MCP Server
 
-**Purpose**: Parse and extract actionable metadata from IFS Cloud OpenAPI specifications.
+**Purpose**: Parse and extract actionable metadata from Cloud ERP OpenAPI specifications.
 
 **Capabilities**:
 | Tool Name | Description |
@@ -90,7 +90,7 @@ The system provides three specialized MCP servers that an AI agent can invoke to
 | `searchOperations` | Searches operations by tag, path pattern, or description |
 
 **Output Format**:
-- Agent-consumable JSON with IFS-specific annotations
+- Agent-consumable JSON with ERP-specific annotations
 - Entity key identification
 - Required vs optional field mapping
 - TAR-compatible type hints
@@ -212,7 +212,7 @@ Default redacted headers:
 - `Set-Cookie`
 - `X-API-Key`
 - `X-Auth-Token`
-- `X-IFS-Session`
+- `X-Session-Token`
 - `Proxy-Authorization`
 
 ---

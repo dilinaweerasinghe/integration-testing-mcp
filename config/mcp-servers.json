@@ -4,7 +4,7 @@
   "servers": {
     "http-capture-mcp": {
       "name": "HTTP Capture MCP",
-      "description": "Captures HTTP traffic from IFS Cloud using headless browser automation",
+      "description": "Captures HTTP traffic from Cloud ERP using headless browser automation",
       "command": "node",
       "args": ["./packages/mcps/http-capture-mcp/dist/index.js"],
       "transport": "stdio",
@@ -17,7 +17,7 @@
     },
     "openapi-mcp": {
       "name": "OpenAPI Metadata MCP",
-      "description": "Parses OpenAPI specifications and extracts IFS Cloud service metadata",
+      "description": "Parses OpenAPI specifications and extracts Cloud ERP service metadata",
       "command": "node",
       "args": ["./packages/mcps/openapi-mcp/dist/index.js"],
       "transport": "stdio",

@@ -26,7 +26,7 @@ export class OpenApiMcpServer extends BaseMcpServer {
     super({
       name: 'openapi-mcp',
       version: '1.0.0',
-      description: 'Parses OpenAPI specifications for IFS Cloud services',
+      description: 'Parses OpenAPI specifications for Cloud ERP services',
     });
 
     this.auditLogger = createAuditLogger({

@@ -70,8 +70,8 @@ export default defineConfig({
   // Bundle banner with copyright
   banner: {
     js: `/**
- * @ifs/openapi-mcp - OpenAPI MCP Server
- * Copyright (c) ${new Date().getFullYear()} IFS. All rights reserved.
+ * @dilina0914/openapi-mcp - OpenAPI MCP Server
+ * Copyright (c) ${new Date().getFullYear()} Dilina Weerasinghe. All rights reserved.
  * 
  * MCP server for parsing OpenAPI specifications and extracting service metadata.
  */`,

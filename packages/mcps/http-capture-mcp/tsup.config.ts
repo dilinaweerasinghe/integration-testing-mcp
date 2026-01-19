@@ -70,8 +70,8 @@ export default defineConfig({
   // Bundle banner with copyright
   banner: {
     js: `/**
- * @ifs/http-capture-mcp - HTTP Capture MCP Server
- * Copyright (c) ${new Date().getFullYear()} IFS. All rights reserved.
+ * @dilina0914/http-capture-mcp - HTTP Capture MCP Server
+ * Copyright (c) ${new Date().getFullYear()} Dilina Weerasinghe. All rights reserved.
  * 
  * MCP server for capturing HTTP traffic using headless Playwright browser automation.
  */`,

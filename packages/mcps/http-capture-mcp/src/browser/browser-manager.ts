@@ -57,7 +57,7 @@ export class BrowserManager {
       // Standard viewport
       viewport: { width: 1920, height: 1080 },
       // Reasonable user agent
-      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36 IFS-MCP-Capture/1.0',
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36 MCP-Capture/1.0',
     });
 
     this.contextCount++;

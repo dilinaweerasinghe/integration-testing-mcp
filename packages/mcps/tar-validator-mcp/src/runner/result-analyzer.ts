@@ -112,7 +112,7 @@ export class ResultAnalyzer {
       issues.push({
         severity: 'error',
         description: 'Data validation errors detected',
-        suggestion: 'Review the input data against IFS business rules.',
+        suggestion: 'Review the input data against business rules.',
       });
     }
 

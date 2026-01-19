@@ -1,5 +1,5 @@
 /**
- * Entity schema extractor for IFS Cloud entities.
+ * Entity schema extractor for Cloud ERP entities.
  * Extracts structured schema information including keys and data types.
  */
 
@@ -137,7 +137,7 @@ export class EntityExtractor {
   }
 
   /**
-   * Infer key fields for IFS entities.
+   * Infer key fields for ERP entities.
    */
   private inferKeys(
     _schemaName: string,
@@ -146,13 +146,13 @@ export class EntityExtractor {
   ): string[] {
     const keys: string[] = [];
 
-    // Check for IFS-specific key annotations
+    // Check for ERP-specific key annotations
     const ifsKeys = schema['x-ifs-keys'] as string[] | undefined;
     if (ifsKeys) {
       return ifsKeys;
     }
 
-    // Common key patterns for IFS Cloud
+    // Common key patterns for Cloud ERP
     const keyPatterns = [
       /^.*Id$/,           // Ends with Id
       /^.*Key$/,          // Ends with Key

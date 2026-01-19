@@ -2,7 +2,7 @@
 
 ## Overview
 
-The OpenAPI MCP server parses OpenAPI specifications and extracts service metadata for IFS Cloud integration testing.
+The OpenAPI MCP server parses OpenAPI specifications and extracts service metadata for Cloud ERP integration testing.
 
 ## Purpose
 
@@ -30,7 +30,7 @@ Loads an OpenAPI specification from a file path or URL.
 ```json
 {
   "specId": "ifs-customer-api",
-  "title": "IFS Cloud Customer API",
+  "title": "Cloud ERP Customer API",
   "version": "1.0.0",
   "endpointCount": 45,
   "schemaCount": 28
@@ -243,11 +243,11 @@ searchOperations(specId: "customer-api", entityName: "customer")
 # Returns: All operations related to customers
 ```
 
-## IFS-Specific Features
+## ERP-Specific Features
 
 ### Key Detection
 
-The extractor attempts to identify IFS entity keys by:
+The extractor attempts to identify ERP entity keys by:
 1. Looking for `x-ifs-keys` extension
 2. Matching common patterns (ends with `Id`, `Key`, `Code`)
 3. Using required fields as fallback

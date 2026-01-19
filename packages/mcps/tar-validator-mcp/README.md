@@ -1,6 +1,6 @@
 # SAR Test MCP Server
 
-A Model Context Protocol (MCP) server for running and validating SAR/TAR test files for IFS Cloud integration testing. Execute tests, analyze results, validate syntax, and get fix suggestions through MCP tools.
+A Model Context Protocol (MCP) server for running and validating SAR/TAR test files for Cloud ERP integration testing. Execute tests, analyze results, validate syntax, and get fix suggestions through MCP tools.
 
 [![npm version](https://img.shields.io/npm/v/@dilina0914/sar-test-mcp.svg)](https://www.npmjs.com/package/@dilina0914/sar-test-mcp)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
@@ -19,11 +19,11 @@ A Model Context Protocol (MCP) server for running and validating SAR/TAR test fi
 - Node.js v20.0.0 or higher
 - npm or pnpm package manager
 - ScriptARest.exe (for test execution)
-- Access to IFS Cloud server (for test execution)
+- Access to Cloud ERP server (for test execution)
 
 ## Package Information
 
-This package is **fully bundled** - all internal dependencies are included. No need to install additional `@ifs/*` packages.
+This package is **fully bundled** - all internal dependencies are included.
 
 | Property | Value |
 |----------|-------|
@@ -86,7 +86,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `SAR_SCRIPT_A_REST_PATH` | Full path to ScriptARest.exe | Yes (for running tests) |
-| `SAR_SERVER_URL` | IFS Cloud server URL | Yes (for running tests) |
+| `SAR_SERVER_URL` | Cloud ERP server URL | Yes (for running tests) |
 | `SAR_USERNAME` | Authentication username | Yes (for running tests) |
 | `SAR_PASSWORD` | Authentication password | Yes (for running tests) |
 | `SAR_TIMEOUT_MS` | Timeout in milliseconds | No (default: 600000) |
@@ -219,7 +219,7 @@ npx @dilina0914/sar-test-mcp
 
 **Solution:**
 - Verify `SAR_USERNAME` and `SAR_PASSWORD` are correct
-- Check if the user has access to the IFS Cloud server
+- Check if the user has access to the Cloud ERP server
 - Verify the server URL is correct and accessible
 
 ### Test File Not Found
@@ -237,7 +237,7 @@ npx @dilina0914/sar-test-mcp
 
 **Solution:**
 - Increase `SAR_TIMEOUT_MS` (default: 600000 = 10 minutes)
-- Check if the IFS server is responding slowly
+- Check if the server is responding slowly
 - Verify network connectivity
 
 ### Environment Variable Issues
@@ -403,7 +403,7 @@ Parses ScriptARest output to extract:
 
 ## License
 
-Proprietary - IFS
+MIT
 
 ## Links
 
@@ -413,4 +413,4 @@ Proprietary - IFS
 
 ## Support
 
-Contact the IFS QA Automation team for support.
+Open an issue on the GitHub repository for support.

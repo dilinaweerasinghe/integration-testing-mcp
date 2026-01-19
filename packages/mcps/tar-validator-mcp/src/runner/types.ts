@@ -8,7 +8,7 @@
 export interface SarRunnerConfig {
   /** Path to ScriptARest.exe */
   scriptARestPath: string;
-  /** IFS Cloud server URL */
+  /** Cloud ERP server URL */
   serverUrl: string;
   /** Username for authentication */
   username: string;

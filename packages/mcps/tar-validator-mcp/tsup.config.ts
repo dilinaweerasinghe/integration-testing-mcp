@@ -66,8 +66,8 @@ export default defineConfig({
   // Bundle banner with copyright
   banner: {
     js: `/**
- * @ifs/sar-test-mcp - SAR Test MCP Server
- * Copyright (c) ${new Date().getFullYear()} IFS. All rights reserved.
+ * @dilina0914/sar-test-mcp - SAR Test MCP Server
+ * Copyright (c) ${new Date().getFullYear()} Dilina Weerasinghe. All rights reserved.
  * 
  * MCP server for running and validating SAR/TAR test files.
  */`,

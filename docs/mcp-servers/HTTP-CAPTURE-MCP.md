@@ -2,12 +2,12 @@
 
 ## Overview
 
-The HTTP Capture MCP server provides tools for capturing HTTP traffic from IFS Cloud web interfaces using headless browser automation with Playwright.
+The HTTP Capture MCP server provides tools for capturing HTTP traffic from Cloud ERP web interfaces using headless browser automation with Playwright.
 
 ## Purpose
 
 When developing TAR test cases, you often need to:
-1. Discover the actual HTTP requests made by IFS Cloud UIs
+1. Discover the actual HTTP requests made by Cloud ERP UIs
 2. Understand request/response payloads and schemas
 3. Capture authentication flows and API patterns
 
@@ -159,7 +159,7 @@ The following headers are automatically redacted:
 - `Cookie` / `Set-Cookie`
 - `X-API-Key`
 - `X-Auth-Token`
-- `X-IFS-Session`
+- `X-Session-Token`
 - And more (see security config)
 
 ### Body Redaction

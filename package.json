@@ -1,7 +1,7 @@
 {
-  "name": "@ifs/sar-tar-mcp-tooling",
+  "name": "integration-testing-mcp",
   "version": "1.0.0",
-  "description": "MCP-based tooling system for SAR/TAR test automation in IFS Cloud integration testing",
+  "description": "MCP-based tooling system for SAR/TAR test automation in Cloud ERP integration testing",
   "private": true,
   "type": "module",
   "engines": {
@@ -29,9 +29,9 @@
     "typecheck": "pnpm -r typecheck",
     "clean": "pnpm -r clean && rimraf node_modules",
     "prepare": "husky install",
-    "mcp:http-capture": "pnpm --filter @ifs/http-capture-mcp start",
-    "mcp:openapi": "pnpm --filter @ifs/openapi-mcp start",
-    "mcp:tar-validator": "pnpm --filter @ifs/tar-validator-mcp start",
+    "mcp:http-capture": "pnpm --filter @dilina0914/http-capture-mcp start",
+    "mcp:openapi": "pnpm --filter @dilina0914/openapi-mcp start",
+    "mcp:sar-test": "pnpm --filter @dilina0914/sar-test-mcp start",
     "mcp:all": "pnpm -r --filter './packages/mcps/*' start"
   },
   "devDependencies": {

@@ -2,7 +2,7 @@
 /**
  * HTTP Capture MCP Server
  * 
- * Captures HTTP traffic from IFS Cloud using headless browser automation.
+ * Captures HTTP traffic from Cloud ERP using headless browser automation.
  * Provides tools for opening URLs, capturing requests, and extracting response schemas.
  */
 

@@ -167,7 +167,7 @@ export class SarTestMcpServer extends BaseMcpServer {
         description: 'Configure the SAR test runner with ScriptARest path and server credentials',
         inputSchema: createSchema()
           .string('scriptARestPath', 'Path to ScriptARest.exe', { required: true })
-          .string('serverUrl', 'IFS Cloud server URL', { required: true })
+          .string('serverUrl', 'Cloud ERP server URL', { required: true })
           .string('username', 'Username for authentication', { required: true })
           .string('password', 'Password for authentication', { required: true })
           .integer('timeoutMs', 'Default timeout in milliseconds', { default: 600000 })

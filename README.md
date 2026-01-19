@@ -1,12 +1,12 @@
 # SAR/TAR MCP Tooling System
 
-A collection of Model Context Protocol (MCP) servers for SAR/TAR test automation in IFS Cloud integration testing. Run tests, capture HTTP traffic, validate TAR files, and analyze results through MCP tools.
+A collection of Model Context Protocol (MCP) servers for SAR/TAR test automation in Cloud ERP integration testing. Run tests, capture HTTP traffic, validate TAR files, and analyze results through MCP tools.
 
 ## Features
 
 - **SAR Test MCP**: Run TAR tests using ScriptARest.exe, validate files, analyze results
 - **HTTP Capture MCP**: Capture HTTP traffic using headless Playwright browser automation
-- **OpenAPI MCP**: Parse OpenAPI specs and extract IFS Cloud service metadata
+- **OpenAPI MCP**: Parse OpenAPI specs and extract Cloud ERP service metadata
 - **34 Powerful Tools**: Complete test execution, validation, browser automation, API discovery, and data capture
 - **Result Analysis**: Parse test output, identify errors, suggest fixes
 - **Security**: Domain allowlist, header redaction, audit logging
@@ -16,7 +16,7 @@ A collection of Model Context Protocol (MCP) servers for SAR/TAR test automation
 - Node.js v20.0.0 or higher
 - npm or pnpm package manager
 - ScriptARest.exe (for SAR Test MCP - test execution)
-- Access to IFS Cloud server (for test execution)
+- Access to Cloud ERP server (for test execution)
 
 ## Available MCP Servers
 
@@ -102,7 +102,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `SAR_SCRIPT_A_REST_PATH` | Full path to ScriptARest.exe | Yes (for running tests) |
-| `SAR_SERVER_URL` | IFS Cloud server URL | Yes (for running tests) |
+| `SAR_SERVER_URL` | Cloud ERP server URL | Yes (for running tests) |
 | `SAR_USERNAME` | Authentication username | Yes (for running tests) |
 | `SAR_PASSWORD` | Authentication password | Yes (for running tests) |
 | `SAR_TIMEOUT_MS` | Timeout in milliseconds | No (default: 600000) |
@@ -392,7 +392,7 @@ pnpm mcp:openapi
 
 **Solution:**
 - Verify `SAR_USERNAME` and `SAR_PASSWORD` are correct
-- Check if the user has access to the IFS Cloud server
+- Check if the user has access to the Cloud ERP server
 - Verify the server URL is correct and accessible
 
 ### Browser Not Found

@@ -2,7 +2,7 @@
 /**
  * OpenAPI Metadata MCP Server
  * 
- * Parses OpenAPI specifications and extracts IFS Cloud service metadata.
+ * Parses OpenAPI specifications and extracts Cloud ERP service metadata.
  * Provides tools for endpoint discovery, entity schema extraction, and operation details.
  */
 

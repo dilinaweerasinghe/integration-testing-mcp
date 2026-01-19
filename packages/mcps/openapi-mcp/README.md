@@ -1,6 +1,6 @@
 # OpenAPI MCP Server
 
-A Model Context Protocol (MCP) server for parsing OpenAPI specifications and extracting IFS Cloud service metadata. Load specs, explore endpoints, extract schemas, and search operations through MCP tools.
+A Model Context Protocol (MCP) server for parsing OpenAPI specifications and extracting Cloud ERP service metadata. Load specs, explore endpoints, extract schemas, and search operations through MCP tools.
 
 [![npm version](https://img.shields.io/npm/v/@dilina0914/openapi-mcp.svg)](https://www.npmjs.com/package/@dilina0914/openapi-mcp)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
@@ -287,7 +287,7 @@ The MCP extracts and provides:
 ```json
 {
   "specId": "ifs-cloud",
-  "title": "IFS Cloud API",
+  "title": "Cloud ERP API",
   "version": "1.0.0",
   "endpointCount": 245,
   "schemaCount": 89
@@ -425,7 +425,7 @@ The MCP extracts and provides:
 
 ## License
 
-Proprietary - IFS
+MIT
 
 ## Links
 
@@ -435,4 +435,4 @@ Proprietary - IFS
 
 ## Support
 
-Contact the IFS QA Automation team for support.
+Open an issue on the GitHub repository for support.

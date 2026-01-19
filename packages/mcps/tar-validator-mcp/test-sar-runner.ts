@@ -40,7 +40,7 @@ Test Report =======================================
   TestData CreateSiteData
   Passed
   time: 201.6420736
-  file: C:\\IFS-GH\\ifs-applications\\workspace\\inttst\\test\\inttst\\testdata\\AnD\\CreateSiteData.mkd
+  file: C:\\workspace\\testdata\\CreateSiteData.mkd
   system-out: Server calls: 32
               Failed server calls: 0
               Asserts: 0
@@ -491,7 +491,7 @@ async function runTests() {
   console.log('\n🔧 Configuration:');
   console.log('   Environment Variables:');
   console.log('     SAR_SCRIPT_A_REST_PATH  Path to ScriptARest.exe');
-  console.log('     SAR_SERVER_URL          IFS Cloud server URL');
+  console.log('     SAR_SERVER_URL          Cloud ERP server URL');
   console.log('     SAR_USERNAME            Authentication username');
   console.log('     SAR_PASSWORD            Authentication password');
   console.log('     SAR_TIMEOUT_MS          Timeout in milliseconds (default: 600000)');

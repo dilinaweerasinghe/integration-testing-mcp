@@ -28,7 +28,7 @@ export class HttpCaptureMcpServer extends BaseMcpServer {
     super({
       name: 'http-capture-mcp',
       version: '1.0.0',
-      description: 'Captures HTTP traffic from IFS Cloud using headless browser',
+      description: 'Captures HTTP traffic from Cloud ERP using headless browser',
     });
 
     this.auditLogger = createAuditLogger({

@@ -6,7 +6,7 @@
  * 
  * Environment variables:
  * - SAR_SCRIPT_A_REST_PATH: Path to ScriptARest.exe
- * - SAR_SERVER_URL: IFS Cloud server URL
+ * - SAR_SERVER_URL: Cloud ERP server URL
  * - SAR_USERNAME: Username for authentication
  * - SAR_PASSWORD: Password for authentication
  * - SAR_TIMEOUT_MS: Default timeout in milliseconds (default: 600000)

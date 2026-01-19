@@ -86,7 +86,7 @@ export interface EntitySchema {
   properties: PropertyInfo[];
   /** Required property names */
   required: string[];
-  /** Key fields (for IFS entities) */
+  /** Key fields (for ERP entities) */
   keys?: string[];
   /** Example values */
   examples?: Record<string, unknown>;

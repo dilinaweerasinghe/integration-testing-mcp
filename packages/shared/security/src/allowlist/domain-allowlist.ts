@@ -9,7 +9,7 @@ import type {
 } from '../types/security-types.js';
 
 /**
- * Default allowed domains for IFS Cloud.
+ * Default allowed domains for Cloud ERP.
  */
 export const DEFAULT_ALLOWED_DOMAINS = [
   '*.ifscloud.com',

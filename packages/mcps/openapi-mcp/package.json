@@ -1,7 +1,7 @@
 {
   "name": "@dilina0914/openapi-mcp",
   "version": "1.0.0",
-  "description": "MCP server for parsing OpenAPI specifications and extracting IFS Cloud service metadata",
+  "description": "MCP server for parsing OpenAPI specifications and extracting Cloud ERP service metadata",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -21,7 +21,7 @@
     "ifs",
     "service-metadata"
   ],
-  "author": "IFS",
+  "author": "Dilina Weerasinghe",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
