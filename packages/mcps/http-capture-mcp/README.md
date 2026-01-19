@@ -73,7 +73,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/http-capture-mcp@1.0.0"
+        "@dilina0914/http-capture-mcp@3.0.0"
       ],
       "env": {
         "BROWSER_HEADLESS": "true",
@@ -121,7 +121,7 @@ In the MCP settings, add a new server with the following configuration:
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/http-capture-mcp@1.0.0"
+        "@dilina0914/http-capture-mcp@3.0.0"
       ],
       "env": {
         "BROWSER_HEADLESS": "true",
@@ -140,7 +140,7 @@ Example with visible browser (for debugging):
   "mcpServers": {
     "http-capture": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/http-capture-mcp@1.0.0"],
+      "args": ["-y", "@dilina0914/http-capture-mcp@3.0.0"],
       "env": {
         "BROWSER_HEADLESS": "false",
         "LOG_LEVEL": "debug"
@@ -166,7 +166,7 @@ Add to your Claude Desktop configuration file:
   "mcpServers": {
     "http-capture": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/http-capture-mcp@1.0.0"],
+      "args": ["-y", "@dilina0914/http-capture-mcp@3.0.0"],
       "env": {
         "BROWSER_HEADLESS": "true",
         "LOG_LEVEL": "info"

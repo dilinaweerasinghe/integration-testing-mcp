@@ -22,7 +22,7 @@ A Model Context Protocol (MCP) server for parsing OpenAPI specifications and ext
 
 ## Package Information
 
-This package is **fully bundled** - all internal dependencies are included. No need to install additional `@ifs/*` packages.
+This package is **fully bundled** - all internal dependencies are included.
 
 | Property | Value |
 |----------|-------|
@@ -67,7 +67,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/openapi-mcp@1.0.0"
+        "@dilina0914/openapi-mcp@3.0.0"
       ],
       "env": {
         "LOG_LEVEL": "info",
@@ -111,7 +111,7 @@ In the MCP settings, add a new server with the following configuration:
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/openapi-mcp@1.0.0"
+        "@dilina0914/openapi-mcp@3.0.0"
       ],
       "env": {
         "LOG_LEVEL": "info"
@@ -137,7 +137,7 @@ Add to your Claude Desktop configuration file:
   "mcpServers": {
     "openapi": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/openapi-mcp@1.0.0"],
+      "args": ["-y", "@dilina0914/openapi-mcp@3.0.0"],
       "env": {
         "LOG_LEVEL": "info"
       }
@@ -277,8 +277,8 @@ The MCP extracts and provides:
 {
   "tool": "loadSpec",
   "arguments": {
-    "source": "C:\\specs\\ifs-cloud-api.yaml",
-    "specId": "ifs-cloud"
+    "source": "C:\\specs\\my-api.yaml",
+    "specId": "my-api"
   }
 }
 ```
@@ -286,7 +286,7 @@ The MCP extracts and provides:
 **Response:**
 ```json
 {
-  "specId": "ifs-cloud",
+  "specId": "my-api",
   "title": "Cloud ERP API",
   "version": "1.0.0",
   "endpointCount": 245,
@@ -300,7 +300,7 @@ The MCP extracts and provides:
 {
   "tool": "listEndpoints",
   "arguments": {
-    "specId": "ifs-cloud",
+    "specId": "my-api",
     "tag": "CustomerOrder",
     "methods": ["GET", "POST"]
   }
@@ -334,7 +334,7 @@ The MCP extracts and provides:
 {
   "tool": "getEntitySchema",
   "arguments": {
-    "specId": "ifs-cloud",
+    "specId": "my-api",
     "schemaName": "CustomerOrder",
     "resolveRefs": true,
     "includeExamples": true
@@ -373,7 +373,7 @@ The MCP extracts and provides:
 {
   "tool": "searchOperations",
   "arguments": {
-    "specId": "ifs-cloud",
+    "specId": "my-api",
     "query": "create customer",
     "limit": 5
   }
@@ -386,7 +386,7 @@ The MCP extracts and provides:
 {
   "tool": "getOperationDetails",
   "arguments": {
-    "specId": "ifs-cloud",
+    "specId": "my-api",
     "path": "/api/v1/customer-orders",
     "method": "POST"
   }
@@ -399,7 +399,7 @@ The MCP extracts and provides:
 {
   "tool": "listSchemas",
   "arguments": {
-    "specId": "ifs-cloud"
+    "specId": "my-api"
   }
 }
 ```

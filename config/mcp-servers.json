@@ -38,8 +38,8 @@
         "LOG_LEVEL": "info",
         "VALIDATION_STRICT_MODE": "true",
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
-        "SAR_SERVER_URL": "https://your-ifs-server.com",
-        "SAR_USERNAME": "ifsapp",
+        "SAR_SERVER_URL": "https://your-erp-server.com",
+        "SAR_USERNAME": "your_username",
         "SAR_PASSWORD": "",
         "SAR_TIMEOUT_MS": "600000"
       }

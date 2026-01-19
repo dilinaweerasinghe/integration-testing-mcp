@@ -1,6 +1,6 @@
 {
   "name": "@dilina0914/http-capture-mcp",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "MCP server for capturing HTTP traffic using headless Playwright browser automation",
   "type": "module",
   "main": "./dist/index.js",
@@ -19,11 +19,11 @@
     "playwright",
     "browser-automation",
     "api-testing",
-    "ifs",
-    "network-capture"
+    "network-capture",
+    "cloud-erp"
   ],
   "author": "Dilina Weerasinghe",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/dilinaweerasinghe/integration-testing-mcp.git",

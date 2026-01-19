@@ -61,12 +61,12 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/sar-test-mcp@1.0.0"
+        "@dilina0914/sar-test-mcp@3.0.0"
       ],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
-        "SAR_SERVER_URL": "https://your-ifs-server.com",
-        "SAR_USERNAME": "ifsapp",
+        "SAR_SERVER_URL": "https://your-erp-server.com",
+        "SAR_USERNAME": "your_username",
         "SAR_PASSWORD": "your_password"
       }
     },
@@ -74,7 +74,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/http-capture-mcp@1.0.0"
+        "@dilina0914/http-capture-mcp@2.0.0"
       ],
       "env": {
         "BROWSER_HEADLESS": "true",
@@ -85,7 +85,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/openapi-mcp@1.0.0"
+        "@dilina0914/openapi-mcp@3.0.0"
       ],
       "env": {
         "LOG_LEVEL": "info"
@@ -151,12 +151,12 @@ In the MCP settings, add the servers with the following configuration:
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/sar-test-mcp@1.0.0"
+        "@dilina0914/sar-test-mcp@3.0.0"
       ],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
-        "SAR_SERVER_URL": "https://your-ifs-server.com",
-        "SAR_USERNAME": "ifsapp",
+        "SAR_SERVER_URL": "https://your-erp-server.com",
+        "SAR_USERNAME": "your_username",
         "SAR_PASSWORD": "your_password",
         "SAR_TIMEOUT_MS": "600000"
       }
@@ -165,7 +165,7 @@ In the MCP settings, add the servers with the following configuration:
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/http-capture-mcp@1.0.0"
+        "@dilina0914/http-capture-mcp@2.0.0"
       ],
       "env": {
         "BROWSER_HEADLESS": "true",
@@ -177,7 +177,7 @@ In the MCP settings, add the servers with the following configuration:
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/openapi-mcp@1.0.0"
+        "@dilina0914/openapi-mcp@3.0.0"
       ],
       "env": {
         "LOG_LEVEL": "info"
@@ -194,12 +194,12 @@ In the MCP settings, add the servers with the following configuration:
   "mcpServers": {
     "sar-test": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/sar-test-mcp@1.0.0"],
+      "args": ["-y", "@dilina0914/sar-test-mcp@3.0.0"],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Users\\YourName\\Downloads\\ScriptARest\\ScriptARest.exe",
-        "SAR_SERVER_URL": "https://ifs-cloud-server.rnd.ifsworld.com",
-        "SAR_USERNAME": "ifsapp",
-        "SAR_PASSWORD": "ifsapp"
+        "SAR_SERVER_URL": "https://your-erp-server.example.com",
+        "SAR_USERNAME": "your_username",
+        "SAR_PASSWORD": "your_password"
       }
     }
   }
@@ -213,7 +213,7 @@ In the MCP settings, add the servers with the following configuration:
   "mcpServers": {
     "http-capture": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/http-capture-mcp@1.0.0"],
+      "args": ["-y", "@dilina0914/http-capture-mcp@2.0.0"],
       "env": {
         "BROWSER_HEADLESS": "false",
         "LOG_LEVEL": "debug"
@@ -230,7 +230,7 @@ In the MCP settings, add the servers with the following configuration:
   "mcpServers": {
     "openapi": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/openapi-mcp@1.0.0"],
+      "args": ["-y", "@dilina0914/openapi-mcp@3.0.0"],
       "env": {
         "LOG_LEVEL": "info"
       }
@@ -258,17 +258,17 @@ Add to your Claude Desktop configuration file:
   "mcpServers": {
     "sar-test": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/sar-test-mcp@1.0.0"],
+      "args": ["-y", "@dilina0914/sar-test-mcp@3.0.0"],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
-        "SAR_SERVER_URL": "https://your-ifs-server.com",
-        "SAR_USERNAME": "ifsapp",
+        "SAR_SERVER_URL": "https://your-erp-server.com",
+        "SAR_USERNAME": "your_username",
         "SAR_PASSWORD": "your_password"
       }
     },
     "http-capture": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/http-capture-mcp@1.0.0"],
+      "args": ["-y", "@dilina0914/http-capture-mcp@2.0.0"],
       "env": {
         "BROWSER_HEADLESS": "true",
         "LOG_LEVEL": "info"
@@ -276,7 +276,7 @@ Add to your Claude Desktop configuration file:
     },
     "openapi": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/openapi-mcp@1.0.0"],
+      "args": ["-y", "@dilina0914/openapi-mcp@3.0.0"],
       "env": {
         "LOG_LEVEL": "info"
       }
@@ -311,8 +311,8 @@ Windows (PowerShell):
 ```powershell
 # SAR Test MCP
 $env:SAR_SCRIPT_A_REST_PATH = "C:\Path\To\ScriptARest.exe"
-$env:SAR_SERVER_URL = "https://your-ifs-server.com"
-$env:SAR_USERNAME = "ifsapp"
+$env:SAR_SERVER_URL = "https://your-erp-server.com"
+$env:SAR_USERNAME = "your_username"
 $env:SAR_PASSWORD = "your_password"
 
 # HTTP Capture MCP
@@ -324,8 +324,8 @@ Windows (Command Prompt):
 ```cmd
 :: SAR Test MCP
 set SAR_SCRIPT_A_REST_PATH=C:\Path\To\ScriptARest.exe
-set SAR_SERVER_URL=https://your-ifs-server.com
-set SAR_USERNAME=ifsapp
+set SAR_SERVER_URL=https://your-erp-server.com
+set SAR_USERNAME=your_username
 set SAR_PASSWORD=your_password
 
 :: HTTP Capture MCP
@@ -337,8 +337,8 @@ Linux/macOS:
 ```bash
 # SAR Test MCP
 export SAR_SCRIPT_A_REST_PATH="/path/to/ScriptARest"
-export SAR_SERVER_URL="https://your-ifs-server.com"
-export SAR_USERNAME="ifsapp"
+export SAR_SERVER_URL="https://your-erp-server.com"
+export SAR_USERNAME="your_username"
 export SAR_PASSWORD="your_password"
 
 # HTTP Capture MCP

@@ -1,6 +1,6 @@
 {
   "name": "@dilina0914/sar-test-mcp",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "MCP server for running and validating SAR/TAR test files",
   "type": "module",
   "main": "./dist/index.js",
@@ -15,7 +15,7 @@
   "keywords": [
     "mcp",
     "model-context-protocol",
-    "ifs",
+    "cloud-erp",
     "sar",
     "tar",
     "test-automation",
@@ -23,7 +23,7 @@
     "script-a-rest"
   ],
   "author": "Dilina Weerasinghe",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/dilinaweerasinghe/integration-testing-mcp.git",

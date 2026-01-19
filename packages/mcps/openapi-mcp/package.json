@@ -1,6 +1,6 @@
 {
   "name": "@dilina0914/openapi-mcp",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "MCP server for parsing OpenAPI specifications and extracting Cloud ERP service metadata",
   "type": "module",
   "main": "./dist/index.js",
@@ -18,11 +18,11 @@
     "openapi",
     "swagger",
     "api-discovery",
-    "ifs",
-    "service-metadata"
+    "service-metadata",
+    "cloud-erp"
   ],
   "author": "Dilina Weerasinghe",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/dilinaweerasinghe/integration-testing-mcp.git",

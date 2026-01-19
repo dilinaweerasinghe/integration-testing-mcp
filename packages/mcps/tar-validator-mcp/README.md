@@ -68,12 +68,12 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/sar-test-mcp@1.0.0"
+        "@dilina0914/sar-test-mcp@3.0.0"
       ],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
-        "SAR_SERVER_URL": "https://your-ifs-server.com",
-        "SAR_USERNAME": "ifsapp",
+        "SAR_SERVER_URL": "https://your-erp-server.com",
+        "SAR_USERNAME": "your_username",
         "SAR_PASSWORD": "your_password"
       }
     }
@@ -117,12 +117,12 @@ In the MCP settings, add a new server with the following configuration:
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/sar-test-mcp@1.0.0"
+        "@dilina0914/sar-test-mcp@3.0.0"
       ],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
-        "SAR_SERVER_URL": "https://your-ifs-server.com",
-        "SAR_USERNAME": "ifsapp",
+        "SAR_SERVER_URL": "https://your-erp-server.com",
+        "SAR_USERNAME": "your_username",
         "SAR_PASSWORD": "your_password",
         "SAR_TIMEOUT_MS": "600000"
       }
@@ -147,11 +147,11 @@ Add to your Claude Desktop configuration file:
   "mcpServers": {
     "sar-test": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/sar-test-mcp@1.0.0"],
+      "args": ["-y", "@dilina0914/sar-test-mcp@3.0.0"],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
-        "SAR_SERVER_URL": "https://your-ifs-server.com",
-        "SAR_USERNAME": "ifsapp",
+        "SAR_SERVER_URL": "https://your-erp-server.com",
+        "SAR_USERNAME": "your_username",
         "SAR_PASSWORD": "your_password"
       }
     }
@@ -174,24 +174,24 @@ npm install @dilina0914/sar-test-mcp
 Windows (PowerShell):
 ```powershell
 $env:SAR_SCRIPT_A_REST_PATH = "C:\Path\To\ScriptARest.exe"
-$env:SAR_SERVER_URL = "https://your-ifs-server.com"
-$env:SAR_USERNAME = "ifsapp"
+$env:SAR_SERVER_URL = "https://your-erp-server.com"
+$env:SAR_USERNAME = "your_username"
 $env:SAR_PASSWORD = "your_password"
 ```
 
 Windows (Command Prompt):
 ```cmd
 set SAR_SCRIPT_A_REST_PATH=C:\Path\To\ScriptARest.exe
-set SAR_SERVER_URL=https://your-ifs-server.com
-set SAR_USERNAME=ifsapp
+set SAR_SERVER_URL=https://your-erp-server.com
+set SAR_USERNAME=your_username
 set SAR_PASSWORD=your_password
 ```
 
 Linux/macOS:
 ```bash
 export SAR_SCRIPT_A_REST_PATH="/path/to/ScriptARest"
-export SAR_SERVER_URL="https://your-ifs-server.com"
-export SAR_USERNAME="ifsapp"
+export SAR_SERVER_URL="https://your-erp-server.com"
+export SAR_USERNAME="your_username"
 export SAR_PASSWORD="your_password"
 ```
 
@@ -382,8 +382,8 @@ Parses ScriptARest output to extract:
   "configured": true,
   "config": {
     "scriptARestPath": "C:\\Path\\To\\ScriptARest.exe",
-    "serverUrl": "https://your-ifs-server.com",
-    "username": "ifsapp",
+    "serverUrl": "https://your-erp-server.com",
+    "username": "your_username",
     "hasPassword": true,
     "timeoutMs": 600000
   },

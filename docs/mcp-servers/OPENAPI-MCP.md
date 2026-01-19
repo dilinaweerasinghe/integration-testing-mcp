@@ -29,7 +29,7 @@ Loads an OpenAPI specification from a file path or URL.
 **Returns**:
 ```json
 {
-  "specId": "ifs-customer-api",
+  "specId": "customer-api",
   "title": "Cloud ERP Customer API",
   "version": "1.0.0",
   "endpointCount": 45,
@@ -223,7 +223,7 @@ Unloads a previously loaded spec from memory.
 
 ```
 # 1. Load the OpenAPI spec
-loadSpec(source: "./specs/ifs-customer-api.yaml", specId: "customer-api")
+loadSpec(source: "./specs/customer-api.yaml", specId: "customer-api")
 # Returns: { specId: "customer-api", endpointCount: 45, ... }
 
 # 2. List available endpoints
