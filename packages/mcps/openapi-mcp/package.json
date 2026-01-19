@@ -25,7 +25,7 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dilina0914/sar-mcp.git",
+    "url": "https://github.com/dilinaweerasinghe/integration-testing-mcp.git",
     "directory": "packages/mcps/openapi-mcp"
   },
   "engines": {

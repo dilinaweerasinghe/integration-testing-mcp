@@ -497,9 +497,9 @@ Proprietary - IFS
 
 ## Links
 
-- **GitHub Repository**: https://github.com/dilina0914/sar-mcp
+- **GitHub Repository**: https://github.com/dilinaweerasinghe/integration-testing-mcp
 - **npm Package**: https://www.npmjs.com/package/@dilina0914/http-capture-mcp
-- **Issues**: https://github.com/dilina0914/sar-mcp/issues
+- **Issues**: https://github.com/dilinaweerasinghe/integration-testing-mcp/issues
 
 ## Support
 

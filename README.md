@@ -294,8 +294,8 @@ Run the servers directly for development or testing.
 **Step 1: Clone and Install**
 
 ```bash
-git clone https://github.com/dilina0914/sar-mcp.git
-cd sar-mcp
+git clone https://github.com/dilinaweerasinghe/integration-testing-mcp.git
+cd integration-testing-mcp
 pnpm install
 ```
 
@@ -606,15 +606,14 @@ pnpm format
 
 ## License
 
-Proprietary - IFS
 
 ## Links
 
-- **GitHub Repository**: https://github.com/dilina0914/sar-mcp
+- **GitHub Repository**: https://github.com/dilinaweerasinghe/integration-testing-mcp
 - **SAR Test MCP npm**: https://www.npmjs.com/package/@dilina0914/sar-test-mcp
 - **HTTP Capture MCP npm**: https://www.npmjs.com/package/@dilina0914/http-capture-mcp
 - **OpenAPI MCP npm**: https://www.npmjs.com/package/@dilina0914/openapi-mcp
-- **Issues**: https://github.com/dilina0914/sar-mcp/issues
+- **Issues**: https://github.com/dilinaweerasinghe/integration-testing-mcp/issues
 
 ## Support
 
