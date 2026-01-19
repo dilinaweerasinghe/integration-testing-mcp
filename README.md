@@ -615,6 +615,3 @@ pnpm format
 - **OpenAPI MCP npm**: https://www.npmjs.com/package/@dilina0914/openapi-mcp
 - **Issues**: https://github.com/dilinaweerasinghe/integration-testing-mcp/issues
 
-## Support
-
-Contact the IFS QA Automation team for support.
