@@ -67,7 +67,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/openapi-mcp@3.0.0"
+        "@dilina0914/openapi-mcp@4.0.0"
       ],
       "env": {
         "LOG_LEVEL": "info",
@@ -111,7 +111,7 @@ In the MCP settings, add a new server with the following configuration:
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/openapi-mcp@3.0.0"
+        "@dilina0914/openapi-mcp@4.0.0"
       ],
       "env": {
         "LOG_LEVEL": "info"
@@ -137,7 +137,7 @@ Add to your Claude Desktop configuration file:
   "mcpServers": {
     "openapi": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/openapi-mcp@3.0.0"],
+      "args": ["-y", "@dilina0914/openapi-mcp@4.0.0"],
       "env": {
         "LOG_LEVEL": "info"
       }

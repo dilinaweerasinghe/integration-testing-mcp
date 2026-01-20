@@ -5,11 +5,12 @@
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import {
+  ListToolsRequestSchema,
+  CallToolRequestSchema,
+} from '@modelcontextprotocol/sdk/types.js';
 import type { McpServerConfig, McpTool, ToolHandler } from '../types/mcp-types.js';
 import { ToolRegistry } from './tool-registry.js';
-
-// Type for MCP request handlers
-type RequestHandler<T = unknown> = (request: T) => Promise<unknown>;
 
 /**
  * Abstract base class for MCP servers.
@@ -73,15 +74,15 @@ export abstract class BaseMcpServer {
    * Setup MCP protocol handlers.
    */
   private setupHandlers(): void {
-    // Handle list_tools request
-    const listToolsHandler: RequestHandler = async () => {
+    // Handle list_tools request using the SDK's schema
+    this.server.setRequestHandler(ListToolsRequestSchema, async () => {
       return {
         tools: this.toolRegistry.listTools(),
       };
-    };
+    });
     
-    // Handle call_tool request
-    const callToolHandler: RequestHandler<{ params: { name: string; arguments?: Record<string, unknown> } }> = async (request) => {
+    // Handle call_tool request using the SDK's schema
+    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const { name, arguments: args } = request.params;
       
       try {
@@ -89,7 +90,7 @@ export abstract class BaseMcpServer {
         return {
           content: [
             {
-              type: 'text',
+              type: 'text' as const,
               text: typeof result === 'string' ? result : JSON.stringify(result, null, 2),
             },
           ],
@@ -99,20 +100,14 @@ export abstract class BaseMcpServer {
         return {
           content: [
             {
-              type: 'text',
+              type: 'text' as const,
               text: JSON.stringify({ error: errorMessage }),
             },
           ],
           isError: true,
         };
       }
-    };
-
-    // Register handlers with the server
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (this.server as any).setRequestHandler({ method: 'tools/list' }, listToolsHandler);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (this.server as any).setRequestHandler({ method: 'tools/call' }, callToolHandler);
+    });
   }
 
   /**

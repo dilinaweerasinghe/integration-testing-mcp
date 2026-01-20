@@ -43,14 +43,22 @@ export class HttpCaptureMcpServer extends BaseMcpServer {
     this.registerTool(
       {
         name: 'openUrl',
-        description: 'Opens a URL in a headless browser and starts capturing HTTP traffic. Returns a session ID for subsequent operations.',
+        description: 'Opens a URL in a browser and starts capturing HTTP traffic. Returns a session ID for subsequent operations. Supports HTTP Basic/NTLM auth via username/password params or HTTP_USERNAME/HTTP_PASSWORD env vars.',
         inputSchema: createSchema()
-          .string('url', 'The URL to open (must be in domain allowlist)', { required: true })
+          .string('url', 'The URL to open', { required: true })
           .integer('timeoutMs', 'Navigation timeout in milliseconds', { default: 30000 })
           .boolean('waitForNetworkIdle', 'Wait for network to be idle before returning', { default: true })
+          .string('httpUsername', 'Username for HTTP Basic/NTLM authentication (optional, can also use HTTP_USERNAME env var)')
+          .string('httpPassword', 'Password for HTTP Basic/NTLM authentication (optional, can also use HTTP_PASSWORD env var)')
           .build(),
       },
-      async (args) => this.handleOpenUrl(args as { url: string; timeoutMs?: number; waitForNetworkIdle?: boolean })
+      async (args) => this.handleOpenUrl(args as { 
+        url: string; 
+        timeoutMs?: number; 
+        waitForNetworkIdle?: boolean;
+        httpUsername?: string;
+        httpPassword?: string;
+      })
     );
 
     // Tool: captureRequests
@@ -396,7 +404,9 @@ export class HttpCaptureMcpServer extends BaseMcpServer {
     url: string; 
     timeoutMs?: number; 
     waitForNetworkIdle?: boolean;
-  }): Promise<{ sessionId: string; status: string; capturedCount: number }> {
+    httpUsername?: string;
+    httpPassword?: string;
+  }): Promise<{ sessionId: string; status: string; capturedCount: number; pageUrl: string }> {
     const correlationId = this.logger.newCorrelationId();
     
     // Validate URL against allowlist
@@ -412,8 +422,19 @@ export class HttpCaptureMcpServer extends BaseMcpServer {
       throw new Error('Browser manager not initialized');
     }
 
-    // Create session
-    const context = await this.browserManager.createContext();
+    // Get HTTP credentials from args or environment variables
+    const httpUsername = args.httpUsername ?? process.env['HTTP_USERNAME'];
+    const httpPassword = args.httpPassword ?? process.env['HTTP_PASSWORD'];
+    
+    // Create session with optional HTTP credentials
+    const contextOptions = httpUsername && httpPassword ? {
+      httpCredentials: {
+        username: httpUsername,
+        password: httpPassword,
+      }
+    } : undefined;
+
+    const context = await this.browserManager.createContext(contextOptions);
     const requestCapture = new RequestCapture(context, {
       headerRedactor: this.headerRedactor,
       bodyRedactor: this.bodyRedactor,
@@ -445,10 +466,12 @@ export class HttpCaptureMcpServer extends BaseMcpServer {
     }
 
     const capturedCount = requestCapture.getCapturedCount();
+    const pageUrl = page.url();
     
     this.logger.info('URL opened and capture started', {
       sessionId,
       url: args.url,
+      pageUrl,
       capturedCount,
     });
 
@@ -456,6 +479,7 @@ export class HttpCaptureMcpServer extends BaseMcpServer {
       sessionId,
       status: 'capturing',
       capturedCount,
+      pageUrl,
     };
   }
 

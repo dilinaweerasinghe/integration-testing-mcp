@@ -9,14 +9,11 @@ import type {
 } from '../types/security-types.js';
 
 /**
- * Default allowed domains for Cloud ERP.
+ * Default allowed domains - all domains allowed by default.
+ * Use '*' to allow any domain.
  */
 export const DEFAULT_ALLOWED_DOMAINS = [
-  '*.ifscloud.com',
-  '*.ifs.com',
-  '*.ifsapplications.com',
-  'localhost',
-  '127.0.0.1',
+  '*', // Allow all domains
 ];
 
 /**
@@ -75,6 +72,14 @@ export class DomainAllowlist {
    * Validate a URL against the allowlist.
    */
   validate(url: string): UrlValidationResult {
+    // If '*' is in the allowlist, allow all domains
+    if (this.config.domains.includes('*')) {
+      return {
+        allowed: true,
+        matchedPattern: '*',
+      };
+    }
+
     const hostname = this.extractHostname(url);
 
     if (!hostname) {

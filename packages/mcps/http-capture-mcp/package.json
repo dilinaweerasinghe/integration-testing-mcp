@@ -1,6 +1,6 @@
 {
   "name": "@dilina0914/http-capture-mcp",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "MCP server for capturing HTTP traffic using headless Playwright browser automation",
   "type": "module",
   "main": "./dist/index.js",

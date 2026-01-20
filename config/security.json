@@ -2,16 +2,12 @@
   "$schema": "./schemas/security-config.schema.json",
   "version": "1.0.0",
   "domainAllowlist": {
-    "enabled": true,
+    "enabled": false,
     "domains": [
-      "*.ifscloud.com",
-      "*.ifs.com",
-      "*.ifsapplications.com",
-      "localhost",
-      "127.0.0.1"
+      "*"
     ],
-    "strictMode": true,
-    "blockOnMismatch": true
+    "strictMode": false,
+    "blockOnMismatch": false
   },
   "headerRedaction": {
     "enabled": true,

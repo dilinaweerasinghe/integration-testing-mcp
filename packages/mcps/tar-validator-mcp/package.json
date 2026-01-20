@@ -1,6 +1,6 @@
 {
   "name": "@dilina0914/sar-test-mcp",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "MCP server for running and validating SAR/TAR test files",
   "type": "module",
   "main": "./dist/index.js",
