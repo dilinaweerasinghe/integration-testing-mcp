@@ -61,7 +61,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/sar-test-mcp@4.0.0"
+        "@dilina0914/sar-test-mcp@6.0.0"
       ],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
@@ -74,7 +74,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/http-capture-mcp@4.0.0"
+        "@dilina0914/http-capture-mcp@6.0.0"
       ],
       "env": {
         "BROWSER_HEADLESS": "true",
@@ -85,7 +85,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/openapi-mcp@4.0.0"
+        "@dilina0914/openapi-mcp@6.0.0"
       ],
       "env": {
         "LOG_LEVEL": "info"
@@ -151,7 +151,7 @@ In the MCP settings, add the servers with the following configuration:
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/sar-test-mcp@4.0.0"
+        "@dilina0914/sar-test-mcp@6.0.0"
       ],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
@@ -165,7 +165,7 @@ In the MCP settings, add the servers with the following configuration:
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/http-capture-mcp@4.0.0"
+        "@dilina0914/http-capture-mcp@6.0.0"
       ],
       "env": {
         "BROWSER_HEADLESS": "true",
@@ -177,7 +177,7 @@ In the MCP settings, add the servers with the following configuration:
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/openapi-mcp@4.0.0"
+        "@dilina0914/openapi-mcp@6.0.0"
       ],
       "env": {
         "LOG_LEVEL": "info"
@@ -194,7 +194,7 @@ In the MCP settings, add the servers with the following configuration:
   "mcpServers": {
     "sar-test": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/sar-test-mcp@4.0.0"],
+      "args": ["-y", "@dilina0914/sar-test-mcp@6.0.0"],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Users\\YourName\\Downloads\\ScriptARest\\ScriptARest.exe",
         "SAR_SERVER_URL": "https://your-erp-server.example.com",
@@ -213,7 +213,7 @@ In the MCP settings, add the servers with the following configuration:
   "mcpServers": {
     "http-capture": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/http-capture-mcp@4.0.0"],
+      "args": ["-y", "@dilina0914/http-capture-mcp@6.0.0"],
       "env": {
         "BROWSER_HEADLESS": "false",
         "LOG_LEVEL": "debug"
@@ -230,7 +230,7 @@ In the MCP settings, add the servers with the following configuration:
   "mcpServers": {
     "openapi": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/openapi-mcp@4.0.0"],
+      "args": ["-y", "@dilina0914/openapi-mcp@6.0.0"],
       "env": {
         "LOG_LEVEL": "info"
       }
@@ -258,7 +258,7 @@ Add to your Claude Desktop configuration file:
   "mcpServers": {
     "sar-test": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/sar-test-mcp@4.0.0"],
+      "args": ["-y", "@dilina0914/sar-test-mcp@6.0.0"],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
         "SAR_SERVER_URL": "https://your-erp-server.com",
@@ -268,7 +268,7 @@ Add to your Claude Desktop configuration file:
     },
     "http-capture": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/http-capture-mcp@4.0.0"],
+      "args": ["-y", "@dilina0914/http-capture-mcp@6.0.0"],
       "env": {
         "BROWSER_HEADLESS": "true",
         "LOG_LEVEL": "info"
@@ -276,7 +276,7 @@ Add to your Claude Desktop configuration file:
     },
     "openapi": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/openapi-mcp@4.0.0"],
+      "args": ["-y", "@dilina0914/openapi-mcp@6.0.0"],
       "env": {
         "LOG_LEVEL": "info"
       }

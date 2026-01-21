@@ -68,7 +68,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/sar-test-mcp@4.0.0"
+        "@dilina0914/sar-test-mcp@6.0.0"
       ],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
@@ -117,7 +117,7 @@ In the MCP settings, add a new server with the following configuration:
       "command": "npx",
       "args": [
         "-y",
-        "@dilina0914/sar-test-mcp@4.0.0"
+        "@dilina0914/sar-test-mcp@6.0.0"
       ],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
@@ -147,7 +147,7 @@ Add to your Claude Desktop configuration file:
   "mcpServers": {
     "sar-test": {
       "command": "npx",
-      "args": ["-y", "@dilina0914/sar-test-mcp@4.0.0"],
+      "args": ["-y", "@dilina0914/sar-test-mcp@6.0.0"],
       "env": {
         "SAR_SCRIPT_A_REST_PATH": "C:\\Path\\To\\ScriptARest.exe",
         "SAR_SERVER_URL": "https://your-erp-server.com",

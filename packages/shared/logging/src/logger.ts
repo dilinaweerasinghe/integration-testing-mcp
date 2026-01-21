@@ -1,8 +1,11 @@
 /**
  * Structured logger implementation using Pino.
+ * 
+ * IMPORTANT: MCP servers use stdout for JSON-RPC protocol communication.
+ * All logging MUST go to stderr to avoid interfering with the protocol.
  */
 
-import { pino, type Logger, type LoggerOptions } from 'pino';
+import { pino, type Logger, type LoggerOptions, destination } from 'pino';
 import type { LoggerConfig, LogLevel, LogContext } from './types.js';
 import { randomUUID } from 'node:crypto';
 
@@ -13,12 +16,15 @@ const DEFAULT_CONFIG: LoggerConfig = {
   level: 'info',
   name: 'mcp-server',
   pretty: false,
-  destination: 'stdout',
+  destination: 'stderr', // Changed from stdout - MCP uses stdout for protocol
 };
 
 /**
  * MCP Logger wrapper around Pino.
  * Provides structured logging with correlation ID support.
+ * 
+ * NOTE: All logs are written to stderr to avoid interfering with
+ * MCP protocol communication which uses stdout.
  */
 export class McpLogger {
   private readonly logger: Logger;
@@ -36,6 +42,9 @@ export class McpLogger {
       },
     };
 
+    // Always write to stderr - MCP uses stdout for protocol communication
+    const stderrDestination = destination({ fd: 2 }); // fd 2 = stderr
+
     // Use pretty printing in development
     if (this.config.pretty) {
       this.logger = pino({
@@ -45,11 +54,13 @@ export class McpLogger {
           options: {
             colorize: true,
             translateTime: 'SYS:standard',
+            destination: 2, // stderr
           },
         },
       });
     } else {
-      this.logger = pino(pinoOptions);
+      // Write to stderr instead of stdout
+      this.logger = pino(pinoOptions, stderrDestination);
     }
 
     // Initialize context

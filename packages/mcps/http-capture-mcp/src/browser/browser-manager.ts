@@ -100,7 +100,8 @@ export class BrowserManager {
     });
 
     // Remove webdriver flag to avoid detection
-    await context.addInitScript(() => {
+    // Note: Script is passed as string to avoid TypeScript errors with browser globals
+    await context.addInitScript(`
       // Override webdriver property
       Object.defineProperty(navigator, 'webdriver', {
         get: () => false,
@@ -113,7 +114,7 @@ export class BrowserManager {
       Object.defineProperty(navigator, 'languages', {
         get: () => ['en-US', 'en'],
       });
-    });
+    `);
 
     this.contextCount++;
 

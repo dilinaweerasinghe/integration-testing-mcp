@@ -1,6 +1,6 @@
 {
   "name": "@dilina0914/sar-test-mcp",
-  "version": "4.0.0",
+  "version": "6.0.0",
   "description": "MCP server for running and validating SAR/TAR test files",
   "type": "module",
   "main": "./dist/index.js",
@@ -49,12 +49,8 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
-    "remark-frontmatter": "^5.0.0",
-    "remark-parse": "^11.0.0",
-    "unified": "^11.0.5",
-    "yaml": "^2.4.5",
-    "zod": "^3.23.8",
-    "pino": "^8.21.0"
+    "pino": "^8.21.0",
+    "yaml": "^2.8.2"
   },
   "devDependencies": {
     "@ifs/logging": "workspace:*",

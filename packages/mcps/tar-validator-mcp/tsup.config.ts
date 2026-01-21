@@ -43,7 +43,12 @@ export default defineConfig({
   external: [
     // MCP SDK - required runtime dependency
     '@modelcontextprotocol/sdk',
-    // Node.js built-ins
+    // Pino logger - uses dynamic requires that don't work when bundled in ESM
+    'pino',
+    'pino-pretty',
+    // YAML parser - uses dynamic requires
+    'yaml',
+    // Node.js built-ins (node: prefix)
     'node:fs',
     'node:fs/promises',
     'node:path',
@@ -55,6 +60,15 @@ export default defineConfig({
     'node:crypto',
     'node:os',
     'node:process',
+    // Legacy Node.js built-in requires (for pino/yaml compatibility)
+    'os',
+    'fs',
+    'path',
+    'stream',
+    'util',
+    'events',
+    'crypto',
+    'process',
   ],
 
   // No external for workspace deps - they will be bundled
