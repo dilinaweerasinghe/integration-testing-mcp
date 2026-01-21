@@ -10,6 +10,7 @@ A collection of Model Context Protocol (MCP) servers for SAR/TAR test automation
 - **34 Powerful Tools**: Complete test execution, validation, browser automation, API discovery, and data capture
 - **Result Analysis**: Parse test output, identify errors, suggest fixes
 - **Security**: Domain allowlist, header redaction, audit logging
+- **AI Enhancements**: Custom agents for GitHub Copilot, project rules and commands for Cursor IDE
 
 ## Prerequisites
 
@@ -375,6 +376,167 @@ pnpm mcp:openapi
 
 ---
 
+## AI Assistant Enhancements
+
+Enhance your AI-assisted development experience by adding custom agents, rules, and commands. These additions help AI assistants understand SAR/TAR testing context and generate more accurate test files.
+
+### GitHub Copilot Custom Agent (Visual Studio)
+
+Add the SAR/TAR Test Automation Agent to GitHub Copilot in Visual Studio for intelligent test file generation.
+
+**Step 1: Locate or create the `.github` folder**
+
+In your project root directory, create a `.github` folder if it doesn't exist:
+
+```bash
+mkdir .github
+```
+
+**Step 2: Copy the agent file**
+
+Copy `custome_agents_rules/sar_test.agent.md` to your `.github` folder:
+
+```bash
+cp custome_agents_rules/sar_test.agent.md .github/
+```
+
+Or manually create `.github/sar_test.agent.md` with the agent configuration from this repository.
+
+**Step 3: Enable in Visual Studio**
+
+1. Open Visual Studio
+2. Go to **Tools > Options > GitHub Copilot**
+3. Ensure "Enable custom agents" is checked
+4. Restart Visual Studio
+
+**What the Agent Provides:**
+- Intelligent SAR/TAR test file generation
+- Proper metadata structure (type, owner, mode)
+- Correct variable naming (camelCase)
+- Substitution pattern guidance ({$}, {%}, {#})
+- Test Util and Test Case templates
+- AAA (Arrange-Act-Assert) structure enforcement
+
+---
+
+### Cursor IDE Project Rules
+
+Add project-specific rules to help Cursor understand SAR/TAR testing conventions.
+
+**Step 1: Create the `.cursor/rules` folder**
+
+In your project root directory:
+
+```bash
+mkdir -p .cursor/rules
+```
+
+**Step 2: Copy the rules file**
+
+Copy `custome_agents_rules/sar-rules.md` to your `.cursor/rules` folder:
+
+```bash
+cp custome_agents_rules/sar-rules.md .cursor/rules/
+```
+
+**Step 3: Verify the configuration**
+
+The rules file should have this frontmatter:
+
+```yaml
+---
+name: sar-rules
+description: This is a new rule
+---
+```
+
+**What the Rules Provide:**
+- TAR command syntax guidance (Get, Post, Patch, Delete, etc.)
+- Variable naming conventions
+- Metadata structure requirements
+- Error handling patterns
+- Best practices for test case development
+
+---
+
+### Cursor IDE Project Commands
+
+Add custom commands to quickly execute SAR/TAR tests via the MCP.
+
+**Step 1: Create the `.cursor/commands` folder**
+
+In your project root directory:
+
+```bash
+mkdir -p .cursor/commands
+```
+
+**Step 2: Copy the command file**
+
+Copy `commands/run-sar-test.md` to your `.cursor/commands` folder:
+
+```bash
+cp commands/run-sar-test.md .cursor/commands/
+```
+
+**Step 3: Use the command**
+
+In Cursor chat, type `/run-sar-test` to invoke the command.
+
+**What the Command Enforces:**
+- TAR/SAR tests must be executed via the configured MCP tool
+- No manual or simulated test outputs
+- Test results must include: suite name, status, failures, and metrics
+- Explicit failure reporting if MCP execution fails
+
+---
+
+### Complete AI Enhancement Setup
+
+For the best experience, set up all three enhancements:
+
+**Folder Structure:**
+
+```
+your-project/
+├── .github/
+│   └── sar_test.agent.md          # GitHub Copilot agent
+├── .cursor/
+│   ├── rules/
+│   │   └── sar-rules.md           # Cursor project rules
+│   └── commands/
+│       └── run-sar-test.md        # Cursor project commands
+└── ...
+```
+
+**Quick Setup Script (PowerShell):**
+
+```powershell
+# Create directories
+New-Item -ItemType Directory -Force -Path ".github"
+New-Item -ItemType Directory -Force -Path ".cursor/rules"
+New-Item -ItemType Directory -Force -Path ".cursor/commands"
+
+# Copy files (adjust source paths as needed)
+Copy-Item "custome_agents_rules/sar_test.agent.md" ".github/"
+Copy-Item "custome_agents_rules/sar-rules.md" ".cursor/rules/"
+Copy-Item "commands/run-sar-test.md" ".cursor/commands/"
+```
+
+**Quick Setup Script (Bash):**
+
+```bash
+# Create directories
+mkdir -p .github .cursor/rules .cursor/commands
+
+# Copy files (adjust source paths as needed)
+cp custome_agents_rules/sar_test.agent.md .github/
+cp custome_agents_rules/sar-rules.md .cursor/rules/
+cp commands/run-sar-test.md .cursor/commands/
+```
+
+---
+
 ## Quick Troubleshooting
 
 ### ScriptARest Not Found
@@ -549,10 +711,15 @@ pnpm mcp:openapi
 
 ```
 SAR-MCP/
+├── commands/                       # Cursor IDE commands
+│   └── run-sar-test.md             # SAR test execution command
 ├── config/                         # Configuration files
 │   ├── mcp-servers.json            # MCP server registration
 │   ├── security.json               # Security settings
 │   └── tar-validation-rules.json   # Validation rules
+├── custome_agents_rules/           # AI assistant configurations
+│   ├── sar_test.agent.md           # GitHub Copilot custom agent
+│   └── sar-rules.md                # Cursor IDE project rules
 ├── docs/                           # Documentation
 │   └── PUBLISHING.md               # npm publishing guide
 ├── packages/
