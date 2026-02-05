@@ -1094,6 +1094,62 @@ Post FlmTaskDetailHandling.svc/Sign Into signResponse
 - ✅ Consistent initialization across all actions
 - ✅ Test cases are simpler and more readable
 
+#### Important: Assistant/Dialog Required Fields
+
+> ⚠️ **CRITICAL: Save/Finish Buttons Visibility**
+>
+> In IFS Cloud assistants and dialogs, the **Save**, **Finish**, or **OK** buttons will **NOT be visible** until all **required fields** are completed.
+>
+> This means:
+> - You MUST fill in all required fields before attempting to save/finish
+> - If capture shows no Save/OK button, check if required fields are missing
+> - The API call to save/submit won't work if required fields are empty
+
+**When Capturing Workflow:**
+
+```
+1. Open the assistant/dialog
+2. Fill ALL required fields first  ← IMPORTANT!
+3. Then the Save/Finish/OK button becomes visible
+4. Click to capture the save/submit API call
+```
+
+**When Creating Utils:**
+
+```cs
+// WRONG - Missing required fields, will fail
+Create FlmTaskDetailHandling.svc/SomeVirtualSet Into response
+{
+    "OptionalField": {%value}  // Save button won't appear!
+}
+
+// CORRECT - Include all required fields
+Create FlmTaskDetailHandling.svc/SomeVirtualSet Into response
+{
+    "RequiredField1": {%input.RequiredField1},
+    "RequiredField2": {%input.RequiredField2},
+    "OptionalField": {%value}
+}
+// Now Save/Finish will be available
+```
+
+**How to Identify Required Fields:**
+
+1. **In Browser**: Required fields usually have a red asterisk (*) or are highlighted
+2. **In Capture**: Check which fields the UI sends when successfully saving
+3. **In Error Response**: API may return "Required field missing" errors
+
+**Common Required Fields by Assistant Type:**
+
+| Assistant Type | Common Required Fields |
+|----------------|------------------------|
+| Record Work | TaskSeq, RecordWorkStartTime, SignedBy |
+| Add Assignment | TaskSeq, ResourceSeq or ResourceId |
+| Complete Task | TaskSeq, SignOffReqType |
+| Add Part | TaskSeq, PartNo, Quantity |
+
+> 💡 **TIP:** When a workflow capture doesn't show the expected Save/Submit call, go back and ensure all required fields are filled in the UI.
+
 ### 13. **Workflow Capture and Implementation Order**
 
 > 🚨 **CRITICAL RULE: BROWSER CAPTURE FIRST - BEFORE EVERYTHING**
