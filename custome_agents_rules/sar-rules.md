@@ -52,34 +52,95 @@ When an assistant/dialog has **multiple functionalities** (e.g., Record Work can
 
 > See **Section 12** for detailed patterns and examples.
 
-### 5. Capture Workflow FIRST Before Writing Code (MUST FOLLOW)
+### 5. Capture Workflow in Browser FIRST - Before ANYTHING Else (MUST FOLLOW)
 
-> ⚠️ **CRITICAL: When user provides URL and credentials, you MUST automate the workflow in browser FIRST, then implement the test based on captured API calls. NEVER write test code before capturing the actual workflow.**
+> 🚨 **CRITICAL INSTRUCTION - READ THIS FIRST**
+>
+> When creating a NEW Util, you **MUST** capture the workflow in the browser **BEFORE**:
+> - ❌ Checking existing implementations
+> - ❌ Reading similar files
+> - ❌ Writing any code
+> - ❌ Making any assumptions about endpoints
+>
+> **The browser workflow capture is the FIRST step. Do it IMMEDIATELY when URL is provided.**
 
-**When creating a NEW Util or Test Case:**
+> ⚠️ **WARNING: Existing Implementations May Be WRONG**
+>
+> Existing util implementations in the codebase might have:
+> - ❌ **Wrong endpoints** - API may have changed
+> - ❌ **Wrong operations** - Different action required
+> - ❌ **Missing fields** - Required fields not included
+> - ❌ **Outdated patterns** - Old approach no longer works
+>
+> **DO NOT blindly copy existing code.** When in doubt, **ALWAYS go through the browser workflow** to verify the correct endpoints and operations.
 
-1. **Ask for credentials if not provided:**
-   - Server URL (e.g., `https://server.example.com/main/ifsapplications/web/`)
-   - Username and Password
+**Mandatory Order for Creating Utils:**
 
-2. **If URL is provided → CAPTURE WORKFLOW FIRST:**
-   - Open browser using HTTP capture tools
-   - Navigate to the relevant page
-   - Perform the workflow steps in the UI
-   - Capture ALL API calls made by the browser
-   - **ONLY THEN** implement the util/test based on captured data
+```
+┌─────────────────────────────────────────────────────────────┐
+│  STEP 1: GET URL + CREDENTIALS (Ask if not provided)        │
+├─────────────────────────────────────────────────────────────┤
+│  STEP 2: OPEN BROWSER & CAPTURE WORKFLOW  ← DO THIS FIRST!  │
+│          - Navigate to server                                │
+│          - Perform the UI workflow                           │
+│          - Capture ALL API calls                             │
+├─────────────────────────────────────────────────────────────┤
+│  STEP 3: ONLY AFTER CAPTURE - Check existing for patterns   │
+│          (But use CAPTURED endpoints, not existing ones!)    │
+├─────────────────────────────────────────────────────────────┤
+│  STEP 4: Implement util based on captured data               │
+└─────────────────────────────────────────────────────────────┘
+```
 
-3. **Do NOT:**
-   - ❌ Write test code first and verify later
-   - ❌ Guess API endpoints or payloads
-   - ❌ Assume request/response structure
+**When User Provides URL → IMMEDIATELY Open Browser:**
 
-4. **DO:**
-   - ✅ Capture browser traffic FIRST
-   - ✅ Extract exact endpoints and payloads from capture
-   - ✅ Implement code based on REAL captured data
+```
+User provides URL → STOP everything else
+                  → Open browser NOW
+                  → Capture the workflow
+                  → THEN proceed with implementation
+```
 
-> See **Section 13** for detailed workflow.
+**When in Doubt → Go Through Browser Workflow:**
+
+If you're unsure about:
+- Which endpoint to use
+- What payload structure is required
+- What fields are mandatory
+- How the API actually works
+
+**→ ALWAYS capture the workflow in browser to verify.**
+
+**❌ WRONG Order (DO NOT DO THIS):**
+1. Check existing implementations
+2. Read similar files
+3. Write code based on patterns
+4. Then try to verify
+
+**✅ CORRECT Order (MUST DO THIS):**
+1. **FIRST** - Open browser, capture workflow
+2. **SECOND** - Extract endpoints from capture
+3. **THIRD** - Check existing implementations (for CODE PATTERNS only, NOT endpoints)
+4. **FOURTH** - Implement based on CAPTURED data (not existing code)
+
+**Ask for credentials if not provided:**
+- Server URL (e.g., `https://server.example.com/main/ifsapplications/web/`)
+- Username and Password
+- Workflow description (what action to capture)
+
+**Searching the Codebase:**
+
+If you need to find related code, services, or implementations:
+- **FLMEXE component** - Fleet Execution module (task handling, assignments, faults)
+- **ADCOM component** - Common/shared functionality
+
+```
+Search paths:
+- flmexe/  → Fleet Execution services and handlers
+- adcom/   → Common utilities and shared code
+```
+
+> See **Section 13** for detailed workflow steps.
 
 ### 6. Test Suite and Test Collection Management (MUST FOLLOW)
 
@@ -1035,28 +1096,69 @@ Post FlmTaskDetailHandling.svc/Sign Into signResponse
 
 ### 13. **Workflow Capture and Implementation Order**
 
-> ⚠️ **CRITICAL RULE: CAPTURE FIRST, THEN IMPLEMENT**
+> 🚨 **CRITICAL RULE: BROWSER CAPTURE FIRST - BEFORE EVERYTHING**
 >
-> When user provides URL and credentials, you **MUST** automate the workflow in the browser **FIRST** to capture API calls, **THEN** implement the test/util based on captured data.
+> When creating a util, you **MUST** capture the workflow in the browser **BEFORE**:
+> - Checking existing implementations
+> - Reading similar files  
+> - Writing any code
+> - Making assumptions about API endpoints
 >
+> **The browser capture is STEP 1. Do it IMMEDIATELY when URL is provided.**
 > **NEVER write code first and verify later. ALWAYS capture first.**
+
+> ⚠️ **WARNING: Existing Implementations May Be WRONG**
+>
+> Existing util implementations in the codebase might have **INCORRECT**:
+> - **Endpoints** - API may have changed or been updated
+> - **Operations** - Different action or method required
+> - **Field names** - Fields renamed or restructured
+> - **Required fields** - New mandatory fields added
+>
+> **DO NOT blindly copy existing code - it may be outdated or wrong!**
+> 
+> **When in doubt → ALWAYS go through the browser workflow to verify.**
+
+#### Why Capture BEFORE Checking Existing Code?
+
+| If you check existing code first... | If you capture workflow first... |
+|-------------------------------------|----------------------------------|
+| ❌ You may copy WRONG endpoints | ✅ You get the ACTUAL current API |
+| ❌ Existing code may be OUTDATED | ✅ You see what CURRENTLY works |
+| ❌ You may miss NEW required fields | ✅ You capture ALL required fields |
+| ❌ You waste time debugging wrong code | ✅ It works correctly first time |
+
+#### Searching the Codebase (For Patterns Only)
+
+If you need to search for related code or services (AFTER capturing workflow):
+
+| Component | Description | Search Path |
+|-----------|-------------|-------------|
+| **FLMEXE** | Fleet Execution - task handling, assignments, faults | `flmexe/` |
+| **ADCOM** | Common/shared functionality | `adcom/` |
+
+**Important:** Use existing code for **CODE PATTERNS only** (variable naming, structure, error handling) - NOT for endpoints or operations. Always use the **CAPTURED** endpoints from browser.
 
 #### Workflow Order (MUST FOLLOW)
 
 ```
-1. User provides URL + credentials
-        ↓
-2. OPEN BROWSER and navigate to server
-        ↓
-3. CAPTURE the workflow (perform actions in UI)
-        ↓
-4. EXTRACT endpoints, payloads, responses from capture
-        ↓
-5. IMPLEMENT util/test based on captured data
-        ↓
-6. RUN test to verify it works
-        ↓
-7. FINALIZE (remove Print, cleanup)
+┌────────────────────────────────────────────────────────────────┐
+│ 1. User provides URL + credentials                              │
+│         ↓                                                       │
+│ 2. OPEN BROWSER and navigate to server    ← DO THIS FIRST!     │
+│         ↓                                                       │
+│ 3. CAPTURE the workflow (perform actions in UI)                 │
+│         ↓                                                       │
+│ 4. EXTRACT endpoints, payloads, responses from capture          │
+│         ↓                                                       │
+│ 5. (Optional) Check existing implementations for patterns only  │
+│         ↓                                                       │
+│ 6. IMPLEMENT util/test based on CAPTURED data                   │
+│         ↓                                                       │
+│ 7. RUN test to verify it works                                  │
+│         ↓                                                       │
+│ 8. FINALIZE (remove Print, cleanup)                             │
+└────────────────────────────────────────────────────────────────┘
 ```
 
 #### Step 1: Check if URL/Credentials are Provided
