@@ -43,7 +43,22 @@ Choose the integration method that works best for your workflow:
 
 Integrate the MCP servers into VS Code to use tools directly in your editor.
 
-**Step 1: Create the MCP configuration folder**
+**Step 1: Install Playwright (Required for HTTP Capture MCP)**
+
+Check if Playwright is installed:
+
+```bash
+npx playwright --version
+```
+
+If not installed or you see an error, install it:
+
+```bash
+npm install -g playwright
+npx playwright install chromium
+```
+
+**Step 2: Create the MCP configuration folder**
 
 In your project root directory, create a `.vscode` folder:
 
@@ -51,7 +66,7 @@ In your project root directory, create a `.vscode` folder:
 mkdir .vscode
 ```
 
-**Step 2: Create the MCP configuration file**
+**Step 3: Create the MCP configuration file**
 
 Inside the `.vscode` folder, create a file named `mcp.json` with the following content:
 
@@ -96,7 +111,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
 }
 ```
 
-**Step 3: Configure environment variables**
+**Step 4: Configure environment variables**
 
 #### SAR Test MCP Variables
 
@@ -125,7 +140,7 @@ Inside the `.vscode` folder, create a file named `mcp.json` with the following c
 | `AUDIT_LOG_ENABLED` | Enable audit logging | No | `true` |
 | `AUDIT_LOG_DIR` | Directory for audit logs | No | `./logs/audit` |
 
-**Step 4: Restart VS Code**
+**Step 5: Restart VS Code**
 
 Close and reopen VS Code to load the MCP server configuration.
 
@@ -135,13 +150,28 @@ Close and reopen VS Code to load the MCP server configuration.
 
 Cursor IDE has built-in support for MCP servers, making integration straightforward.
 
-**Step 1: Open Cursor Settings**
+**Step 1: Install Playwright (Required for HTTP Capture MCP)**
+
+Check if Playwright is installed:
+
+```bash
+npx playwright --version
+```
+
+If not installed or you see an error, install it:
+
+```bash
+npm install -g playwright
+npx playwright install chromium
+```
+
+**Step 2: Open Cursor Settings**
 
 1. Open Cursor IDE
 2. Go to Settings (File > Preferences > Settings or Ctrl/Cmd + ,)
 3. Search for "MCP" or navigate to the MCP configuration section
 
-**Step 2: Add MCP Server Configuration**
+**Step 3: Add MCP Server Configuration**
 
 In the MCP settings, add the servers with the following configuration:
 
@@ -240,7 +270,7 @@ In the MCP settings, add the servers with the following configuration:
 }
 ```
 
-**Step 3: Save and Restart**
+**Step 4: Save and Restart**
 
 Save the configuration and restart Cursor IDE to activate the MCP servers.
 
@@ -248,7 +278,22 @@ Save the configuration and restart Cursor IDE to activate the MCP servers.
 
 ### Option 3: Claude Desktop Integration
 
-Add to your Claude Desktop configuration file:
+**Step 1: Install Playwright (Required for HTTP Capture MCP)**
+
+Check if Playwright is installed:
+
+```bash
+npx playwright --version
+```
+
+If not installed or you see an error, install it:
+
+```bash
+npm install -g playwright
+npx playwright install chromium
+```
+
+**Step 2: Add to your Claude Desktop configuration file**
 
 **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
 

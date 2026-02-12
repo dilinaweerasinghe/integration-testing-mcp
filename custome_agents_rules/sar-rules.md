@@ -186,6 +186,36 @@ Assert {%taskResponse.Objstate} == "STARTED"
 
 > See **Section 15** for detailed cleanup checklist.
 
+### 8. Asserting Error Responses (MUST FOLLOW)
+
+When testing error scenarios (validation failures, conflicts, duplicates):
+
+1. **Call with ExpectFail: true** - Pass `ExpectFail: true` to the util when expecting failure
+2. **Print error response FIRST** - Always print to see the error structure before asserting
+3. **Extract error message** - Use `response.error.details.Items(0).message`
+4. **Assert error code and message** - Check both `.error.code` and the extracted message
+
+```cs
+// Step 1: Call util with ExpectFail
+Call ../utils/SomeUtil.mkd With Json Into errorResponse
+{
+  "ExpectFail": true,
+  ...
+}
+
+// Step 2: Print error (DEBUGGING - remove later)
+Print errorResponse.error
+
+// Step 3: Extract error message
+Eval errorResponse.error.details.Items(0).message Into errorMsg
+
+// Step 4: Assert error code and message
+Assert {%errorResponse.error.code}                  == "DATABASE_ERROR"
+Assert {%errorMsg}                                  == "ORA-20110: Expected error message"
+```
+
+> See **Section 11: Asserting Error Responses** for detailed patterns and examples.
+
 ---
 
 ## What I Do
@@ -931,6 +961,116 @@ Assert {%assignmentResponse.value.Items(0).AssignedResourceId} == {$expectedReso
 ```
 
 > ⚠️ **REMINDER:** Remove all `Print` statements after identifying the correct index. Print is for debugging only.
+
+#### Asserting Error Responses
+
+When testing error scenarios (e.g., validation failures, duplicate assignments, role conflicts), you need to assert the error response structure.
+
+**Step 1: Call the util with `ExpectFail` flag**
+
+```cs
+// When calling a util that should fail, pass ExpectFail: true
+Call ../utils/AssignedToMe.mkd With Json Into assignMechExecutor2Response
+{
+  "TaskSeq"          : {%taskSeq},
+  "TaskResourceSeq"  : {%mechExecutorTaskResourceSeq},
+  "ResourceGroupSeq" : {%mechExecutorResourceGroupSeq},
+  "ExpectFail"       : true
+}
+```
+
+**Step 2: Print the error response first to understand structure**
+
+```cs
+// ALWAYS print the error response first to see the structure
+Print assignMechExecutor2Response
+Print assignMechExecutor2Response.error
+Print assignMechExecutor2Response.error.code
+Print assignMechExecutor2Response.error.details
+```
+
+**Step 3: Extract error message for assertion**
+
+Error messages are typically in `.error.details.Items(0).message`:
+
+```cs
+// Extract error details for assertion
+Eval assignMechExecutor2Response.error.details.Items(0).message     Into mechExecutor2ErrorMsg
+Eval assignMechInspectorResponse.error.details.Items(0).message     Into mechInspectorErrorMsg
+Eval assignAvionicsExecutorResponse.error.details.Items(0).message  Into avionicsExecutorErrorMsg
+```
+
+**Step 4: Assert error code and message**
+
+```cs
+// Assert FAIL 1: MECH executor (2nd) - same user already assigned as MECH executor
+Assert {%assignMechExecutor2Response.error.code}                    == "DATABASE_ERROR"
+Assert {%mechExecutor2ErrorMsg}                                     == "ORA-20110: LabourAssignmentUtil.HAVINGACTIVEASSIGNMENT: You already have an active executor assignment for this skill."
+
+// Assert FAIL 2: MECH inspector - conflict with existing MECH assignments
+Assert {%assignMechInspectorResponse.error.code}                    == "DATABASE_ERROR"
+Assert {%mechInspectorErrorMsg}                                     == "ORA-20110: LabourAssignmentUtil.INVALIDASSIGNMENTROLE: Inspector cannot be the same user assigned as the Executor or Certifier."
+```
+
+**Common Error Response Structure:**
+
+```json
+{
+  "error": {
+    "code": "DATABASE_ERROR",
+    "message": "General error message",
+    "details": [
+      {
+        "code": "SPECIFIC_ERROR_CODE",
+        "message": "ORA-20110: Specific error message with details"
+      }
+    ]
+  }
+}
+```
+
+**Error Assertion Patterns:**
+
+| Error Type | Assert Code | Assert Message Path |
+|------------|-------------|---------------------|
+| Database/Validation Error | `response.error.code == "DATABASE_ERROR"` | `response.error.details.Items(0).message` |
+| Business Logic Error | `response.error.code == "BUSINESS_ERROR"` | `response.error.details.Items(0).message` |
+| Not Found Error | `response.error.code == "NOT_FOUND"` | `response.error.message` |
+
+**Complete Example - Testing Multiple Error Scenarios:**
+
+```cs
+// SUCCESS case - should work
+Call ../utils/AssignedToMe.mkd With Json Into assignMechExecutorResponse
+{
+  "TaskSeq"          : {%taskSeq},
+  "TaskResourceSeq"  : {%defaultMechTaskResourceSeq},
+  "ResourceGroupSeq" : {%defaultMechResourceGroupSeq}
+}
+
+// FAIL case - same user already assigned
+Call ../utils/AssignedToMe.mkd With Json Into assignMechExecutor2Response
+{
+  "TaskSeq"          : {%taskSeq},
+  "TaskResourceSeq"  : {%mechExecutorTaskResourceSeq},
+  "ResourceGroupSeq" : {%mechExecutorResourceGroupSeq},
+  "ExpectFail"       : true
+}
+
+//------------------------ Assert Section ------------------------//
+
+// Assert SUCCESS: Assignment in ASSIGNED state
+Assert {%assignMechExecutorResponse.Objstate}                       == "ASSIGNED"
+
+// Extract error message
+Eval assignMechExecutor2Response.error.details.Items(0).message     Into errorMsg
+
+// Assert FAIL: Error code and message
+Assert {%assignMechExecutor2Response.error.code}                    == "DATABASE_ERROR"
+Assert {%errorMsg}                                                  == "ORA-20110: LabourAssignmentUtil.HAVINGACTIVEASSIGNMENT: You already have an active executor assignment for this skill."
+```
+
+> 📁 **Reference:** See `inttst/test/inttst/10.30.5.1N/SelfAssignSkillRequirment/tests/AssignedToMeTaskAssignment.mkd` for a complete example of error assertions.
 
 > 💡 **TIP:** When unsure which API to use for assertions, open the browser capture, perform the action, then navigate to the tab that shows the result. The captured requests will reveal the exact endpoint and query structure.
 
